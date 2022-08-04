@@ -14,7 +14,7 @@ Next you'll need to open the `.env` file that's located in the root of the proje
 
 ```
 # Java
-VUE_APP_REMOTE_API=http://localhost:8080
+VUE_APP_REMOTE_API=http://localhost:9000
 
 ```
 
