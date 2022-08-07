@@ -1,6 +1,7 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS inventory;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -10,4 +11,18 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+CREATE SEQUENCE book_serial;
+CREATE TABLE inventory (
+	book_id int DEFAULT nextval ('book_serial'),
+	book_isbn bigint NOT NULL,
+	user_id int NOT NULL,
+	book_title varchar(100) NOT NULL,
+	book_author varchar(100) NOT NULL,
+	book_genre varchar(100) NOT NULL,
+	CONSTRAINT pk_inventory PRIMARY KEY (book_id),
+	CONSTRAINT fk_inventory FOREIGN KEY (user_id) references users(user_id)
+);
+
 COMMIT TRANSACTION;
+
+
