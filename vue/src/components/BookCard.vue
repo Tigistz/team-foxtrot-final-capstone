@@ -1,9 +1,10 @@
 <template>
   <div class="book">
-    <div class="book-title">The Alchemist</div>
-    <img class="book-cover" src='../assets/SampleImage.jpg'/>
-    <div class="book-author">Paulo Coelho</div>
-    <button class="buy">Buy Now</button>
+    <div class="book-title"></div>
+    <img class="book-cover" />
+    <div class="book-author"></div>
+    <div class="book-genre"></div>
+    <button class="buy"></button>
 
 
   </div>
@@ -12,11 +13,53 @@
 </template>
 
 <script>
+
+
+
 export default {
     name: 'book-card',
+    data() {
+        return {
+            info: ''
+        }
+    },
 
+    methods: {
+       getBooks() {
+           
+       }
+    }
 }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
 .book {  

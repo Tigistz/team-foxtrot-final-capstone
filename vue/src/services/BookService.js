@@ -1,10 +1,8 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// const api_key = 
+export default {
 
-// export default {
-
-//     search (){
-//         return axios.get('https://www.googleapis.com/books/v1/volumes?=' + api_key);
-//     }
-// }
+    search (searchType, searchString){
+        return axios.get('https://www.googleapis.com/books/v1/volumes?q=' + searchType + searchString);
+    }
+}

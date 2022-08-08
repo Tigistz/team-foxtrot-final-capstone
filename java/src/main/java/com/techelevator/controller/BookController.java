@@ -7,8 +7,10 @@ import com.techelevator.model.Book;
 import com.techelevator.model.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -30,9 +32,11 @@ public class BookController {
      *
      * @return List<Book>  -  a list of all books in the user's reading list
      */
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = "/mybooks", method = RequestMethod.GET)
-    public List<Book> retrieveAllBooks() {
-        return dao.retrieveAllBooks();
+    public List<Book> retrieveAllBooks(Principal principal) {
+
+        return dao.retrieveAllBooks(principal.getName());
     }
 
 

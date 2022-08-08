@@ -19,19 +19,21 @@ export default {
   data() {
     return {
       api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
-      url_base: " https://www.googleapis.com/books/v1/volumes?=",
+      url_base: " https://www.googleapis.com/books/v1/volumes?q=", 
+      inputType: "",
       query: "",
-      books: {},
+      books: [],
     };
   },
   methods: {
     fetchBooks(e) {
       if (e.key == "Enter") {
         fetch(
-          `${this.url_base}books?q=${this.query}&APPID=${this.api_key}`
+          `${this.url_base}${this.inputType}${this.query}`
         )
           .then((response) => {
-            return response.json();
+            // return response.json();
+            this.handleResponse(response);
           })
           .then(this.setResults);
       }
@@ -39,6 +41,24 @@ export default {
     setResults(results) {
       this.book = results;
     },
+    handleResponse(response) {
+      let title = '';
+      let thumbnail = '';
+      let author = '';
+      for (let i = 0; i < 8; i++) {
+        let item = response.items[i];
+        title = item.volumeInfo.title;
+        author = item.volumeInfo.authors[0];
+        if('imageLinks' in item.volumeInfo){
+            thumbnail = item.volumeInfo.imageLinks.thumbnail;
+               
+        } 
+        else{
+            thumbnail = '';
+        }
+        console.log(title + author + thumbnail);
+      }
+    }
   },
 };
 </script>
