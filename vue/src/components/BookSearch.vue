@@ -1,39 +1,85 @@
 <!--<template>
-  <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+  <div id="search">
+    <label for="booktitle">Please enter book title: </label>
+    <input type="text" name="booktitle" />
   </div>
-</template> -->
+</template>
+
+<script>
+export default {
+
+    name:"book-search",
+    data() {
+        return {
+            booktitle: '',
+            books: []
+        };
+    },
+
+computed: {
+    booktitle () {
+
+        return this.books.filter (book => {
+
+           return this.booktitle == ''? true : this.booktitle == book.booktitle
+        });
+    }
+}
+    
+}
+
+</script>
+
+<style scoped>
+</style>
+-->
 
 <template>
-  
-    <!--<main>
+  <main>
+    <h1>test</h1>
+    <div class="app">
       <div class="search-box">
-      <div class="home">
-        <input 
-          type="text" 
-          class="search-bar" 
+        <input
+          type="text"
+          class="search-bar"
           placeholder="Search titles, authors,isbn ..."
           v-model="query"
           @keypress="fetchBooks"
         />
       </div>
-      </div>
- </main> -->
-  
-  <book-search />
+    </div>
+  </main>
 </template>
 
-
-
 <script>
-import BookSearch from '../components/BookSearch.vue';
 export default {
-  components: { BookSearch },
-  name: "home"
+  name: "app",
+  data() {
+    return {
+      api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
+      url_base: " https://www.googleapis.com/books/v1/volumes?",
+      query: "",
+      books: {},
+    };
+  },
+  methods: {
+    fetchBooks(e) {
+      if (e.key == "Enter") {
+        fetch(
+          `${this.url_base}books?q=${this.query}&APPID=${this.api_key}`
+        )
+          .then((res) => {
+            return res.json();
+          })
+          .then(this.setResults);
+      }
+    },
+    setResults(results) {
+      this.book = results;
+    },
+  },
 };
 </script>
-
 
 <style>
 * {
@@ -43,23 +89,25 @@ export default {
 }
 
 body {
-  font-family: 'montserrat', sans-serif;
+  font-family: "montserrat", sans-serif;
 }
 
-home {
-  background-image: url('/assets/home-page-books-image.jpg');
+#app {
+  background-image: url("./assets/home-page-books-image.jpg");
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
 }
 
-
-
 main {
   min-height: 100vh;
   padding: 25px;
 
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.75)
+  );
 }
 
 .search-box {
@@ -71,12 +119,12 @@ main {
   display: block;
   width: 100%;
   padding: 15px;
-  
+
   color: #313131;
   font-size: 20px;
 
   appearance: none;
-  border:none;
+  border: none;
   outline: none;
   background: none;
 
@@ -93,7 +141,7 @@ main {
 }
 
 .location-box .location {
-  color: #FFF;
+  color: #fff;
   font-size: 32px;
   font-weight: 500;
   text-align: center;
@@ -101,7 +149,7 @@ main {
 }
 
 .location-box .date {
-  color: #FFF;
+  color: #fff;
   font-size: 20px;
   font-weight: 300;
   font-style: italic;
@@ -115,12 +163,12 @@ main {
 .weather-box .temp {
   display: inline-block;
   padding: 10px 25px;
-  color: #FFF;
+  color: #fff;
   font-size: 102px;
   font-weight: 900;
 
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  background-color:rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   margin: 30px 0px;
 
@@ -128,7 +176,7 @@ main {
 }
 
 .weather-box .weather {
-  color: #FFF;
+  color: #fff;
   font-size: 48px;
   font-weight: 700;
   font-style: italic;
