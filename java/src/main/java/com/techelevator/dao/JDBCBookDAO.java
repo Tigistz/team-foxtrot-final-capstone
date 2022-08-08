@@ -21,7 +21,7 @@ public class JDBCBookDAO implements BookDAO{
     }
 
     @Override
-    public List<Book> retrieveAllBooks() {
+    public List<Book> retrieveAllBooks(String username) {
         List<Book> books = new ArrayList<>();
 
         String sql = "SELECT * " +

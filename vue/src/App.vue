@@ -1,10 +1,19 @@
+<<<<<<< HEAD
+
+
+
+<template>
+=======
 <!--<template>
+>>>>>>> 484a502d2c16d2ce40b4e2c36bad2744bc6936c3
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </div>
+    </div> -->
+    <the-header />
     <router-view />
+    <the-footer />
   </div>
 
 
@@ -26,6 +35,41 @@
   </div>  
 </template>
 
+<<<<<<< HEAD
+<script>
+
+  import TheHeader from './components/TheHeader.vue';
+  import TheFooter from './components/TheFooter.vue';
+
+  export default {
+
+       name: 'App',
+       components: {
+         TheHeader,
+         TheFooter
+       }
+  }
+
+
+</script>
+
+<style scoped>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+router-vue {
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+=======
 
 <script>
 
@@ -37,6 +81,7 @@ export default {
 </script>
 
 <style scoped>
+>>>>>>> 484a502d2c16d2ce40b4e2c36bad2744bc6936c3
 </style>
 
 
