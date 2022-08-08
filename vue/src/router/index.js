@@ -5,7 +5,12 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+<<<<<<< HEAD
 import BookSearchPage from '../views/BookSearchPage.vue'
+=======
+import Search from '../views/Search.vue'
+
+>>>>>>> 484a502d2c16d2ce40b4e2c36bad2744bc6936c3
 Vue.use(Router)
 
 /**
@@ -26,7 +31,15 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search,
+      meta: {
+        requiresAuth: false
       }
     },
 

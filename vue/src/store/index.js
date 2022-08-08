@@ -21,6 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
 
+<<<<<<< HEAD
       books: [
         {
           title: "Kafka on the Shore",
@@ -57,6 +58,45 @@ export default new Vuex.Store({
 
   
 
+=======
+
+    books: [
+      {
+        title: "Kafka on the Shore",
+        author: "Haruki Murakami",
+        read: false,
+        isbn: "9781400079278",
+        genre: "fiction"
+      },
+      {
+        title: "The Girl With All the Gifts",
+        author: "M.R. Carey",
+        read: true,
+        isbn: "9780356500157",
+        genre: "nonfiction"
+      },
+      {
+        title: "The Old Man and the Sea",
+        author: "Ernest Hemingway",
+        read: true,
+        isbn: "9780684830490",
+        genre: "fiction"
+      },
+      {
+        title: "Le Petit Prince",
+        author: "Antoine de Saint-Exupéry",
+        read: false,
+        isbn: "9783125971400",
+        genre: "fiction"
+      }
+    ]
+
+
+
+
+
+  },
+>>>>>>> 484a502d2c16d2ce40b4e2c36bad2744bc6936c3
   mutations: {
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
