@@ -29,7 +29,9 @@
 <script>
 import BookSearch from '../components/BookSearch.vue';
 export default {
-  components: { BookSearch },
+  components: { 
+    BookSearch,
+  },
   name: "home"
 };
 </script>

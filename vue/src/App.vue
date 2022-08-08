@@ -12,26 +12,26 @@
 
 
 <template>
-  <v-app class="app">
+  <!-- <v-app class="app">
     <v-main :class="this.$route.meta.homePage ? 'homepage' : 'grey lighten-4'">
       <Navbar v-if="!this.$route.meta.hideNavigation" class="mx-4" />
       <v-container :class="{ 'mx-5': !this.$route.meta.homePage }">
         <router-view></router-view>
       </v-container>
     </v-main>
-  </v-app>
+  </v-app> -->
+
+  <div>
+    <router-view></router-view>
+  </div>  
 </template>
 
 
 <script>
-import BookSearch from "@/components/BookSearch.vue";
-import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "App",
   components: {
-    Navbar,
-    BookSearch,
   },
 };
 </script>

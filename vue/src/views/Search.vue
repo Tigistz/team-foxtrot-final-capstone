@@ -1,47 +1,25 @@
 <template>
-    <div class="container">
-      <div class="search-box">
-        <input
-          type="text"
-          class="search-bar"
-          placeholder="Search titles, authors,isbn ..."
-          v-model="query"
-          @keypress="fetchBooks"
-        />
-      </div>
-      <button>Press Enter to Continue</button>
-    </div>
+  <div>
+    <book-search />
+    <book-card />
+  </div>
 </template>
 
+
+
 <script>
+import BookSearch from '../components/BookSearch.vue';
+import BookCard from '../components/BookCard.vue';
+
 export default {
-  name: "app",
-  data() {
-    return {
-      api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
-      url_base: " https://www.googleapis.com/books/v1/volumes?=",
-      query: "",
-      books: {},
-    };
+  components: { 
+    BookSearch,
+    BookCard,
   },
-  methods: {
-    fetchBooks(e) {
-      if (e.key == "Enter") {
-        fetch(
-          `${this.url_base}books?q=${this.query}&APPID=${this.api_key}`
-        )
-          .then((response) => {
-            return response.json();
-          })
-          .then(this.setResults);
-      }
-    },
-    setResults(results) {
-      this.book = results;
-    },
-  },
+  name: "search"
 };
 </script>
+
 
 <style>
 * {
@@ -51,25 +29,23 @@ export default {
 }
 
 body {
-  font-family: "montserrat", sans-serif;
+  font-family: 'montserrat', sans-serif;
 }
 
-#app {
-  /* background-image: url("./assets/home-page-books-image.jpg"); */
+home {
+  background-image: url('/assets/home-page-books-image.jpg');
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
 }
 
+
+
 main {
   min-height: 100vh;
   padding: 25px;
 
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.25),
-    rgba(0, 0, 0, 0.75)
-  );
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
 }
 
 .search-box {
@@ -81,12 +57,12 @@ main {
   display: block;
   width: 100%;
   padding: 15px;
-
+  
   color: #313131;
   font-size: 20px;
 
   appearance: none;
-  border: none;
+  border:none;
   outline: none;
   background: none;
 
@@ -103,7 +79,7 @@ main {
 }
 
 .location-box .location {
-  color: #fff;
+  color: #FFF;
   font-size: 32px;
   font-weight: 500;
   text-align: center;
@@ -111,7 +87,7 @@ main {
 }
 
 .location-box .date {
-  color: #fff;
+  color: #FFF;
   font-size: 20px;
   font-weight: 300;
   font-style: italic;
@@ -125,12 +101,12 @@ main {
 .weather-box .temp {
   display: inline-block;
   padding: 10px 25px;
-  color: #fff;
+  color: #FFF;
   font-size: 102px;
   font-weight: 900;
 
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color:rgba(255, 255, 255, 0.25);
   border-radius: 16px;
   margin: 30px 0px;
 
@@ -138,7 +114,7 @@ main {
 }
 
 .weather-box .weather {
-  color: #fff;
+  color: #FFF;
   font-size: 48px;
   font-weight: 700;
   font-style: italic;
