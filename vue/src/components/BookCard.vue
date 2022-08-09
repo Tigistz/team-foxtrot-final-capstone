@@ -9,7 +9,7 @@
         <img :src="volumeInfo.imageLinks.thumbnail">
     </div>
 
-    <button v-on:click.prevent="addToReadingList(book)">Add to My Books</button> 
+    <button v-on:click.prevent="addBookToInventory()">Add to My Books</button> 
 
   </div>
  
@@ -17,11 +17,22 @@
 </template>
 
 <script>
+import BookService from '../services/BookService';
 //Instead of button click adding to reading list, it needs to post to ./myBooks as the book object
 
 
 export default {
     name: 'book-card',
+    data() {
+      return {
+      newBook: {
+        title: this.book.volumeInfo.title,
+        author: this.book.volumeInfo.authors[0],
+        genre: this.book.volumeInfo.categories[0],
+
+      }
+      }
+    },
     props: {
       book:{
         type: Object,
@@ -40,12 +51,15 @@ export default {
       getBooks() {
           
       },
-      addToReadingList(book){
-        let addedBook = Object.assign({read: false}, book);
-        this.$store.commit('SAVE_BOOK', addedBook);
+      addBookToInventory() {
+      BookService.addBook(this.newBook).then( (response) => {
+       if (response.status === 201) {
+         this.$router.push('/mybooks');
+       }
+    })
+    },
       }
     }
-}
 </script>
 
 
