@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-
-
-
-<template>
-=======
 <!--<template>
->>>>>>> 484a502d2c16d2ce40b4e2c36bad2744bc6936c3
   <div class="home">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
@@ -45,14 +38,6 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
-<style scoped>
-   #intro {
-     margin:30px;
-   }
-</style>
-
-=======
 
 <style>
 * {
@@ -154,4 +139,3 @@ main {
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 </style>
->>>>>>> 484a502d2c16d2ce40b4e2c36bad2744bc6936c3

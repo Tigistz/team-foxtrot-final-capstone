@@ -9,7 +9,7 @@
         <img :src="volumeInfo.imageLinks.thumbnail">
     </div>
 
-    <button v-on:click.prevent="addBookToInventory()">Add to My Books</button> 
+    <!-- <button v-on:click.prevent="addBookToInventory()">Add to My Books</button>  -->
 
   </div>
  
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import BookService from '../services/BookService';
+
 //Instead of button click adding to reading list, it needs to post to ./myBooks as the book object
 
 
@@ -51,15 +51,9 @@ export default {
       getBooks() {
           
       },
-      addBookToInventory() {
-      BookService.addBook(this.newBook).then( (response) => {
-       if (response.status === 201) {
-         this.$router.push('/mybooks');
-       }
-    })
-    },
-      }
+      
     }
+}
 </script>
 
 

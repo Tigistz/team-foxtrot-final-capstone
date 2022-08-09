@@ -1,10 +1,21 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// const api_key = 
+const http = axios.create({
+    baseURL: "http://localhost:9000"
+  });
 
-// export default {
+export default {
 
-//     search (){
-//         return axios.get('https://www.googleapis.com/books/v1/volumes?=' + api_key);
-//     }
-// }
+   search() {
+       return axios.get('/books')
+   },
+
+   addBook(book) {
+       return http.post('/mybooks', book)
+   },
+
+   getMyBooks() {
+       return axios.get('/mybooks')
+   }
+
+}

@@ -1,24 +1,29 @@
 <template>
-  <div class="book-container">
-    <book-card v-bind:book="book" v-for="book in $store.state.books" v-bind:key="book.isbn" />
+  <div class="book-list">
+    <BookCard v-for="book in books" :key="book.id" :book="book"/>
   </div>
 </template>
 
 <script>
-import BookCard from '@/components/BookCard.vue';
+import BookCard from "./BookCard";
 
 export default {
-    name: 'reading-list',
-    components: {
-        BookCard
-    }
-}
+  //comment out data section later and uncomment props section, delete dummy data
+  // data(){
+  //     return{
+  //         books: []
+  //     }
+  // },  
+  props: {
+    books: {
+      type: Array
+    },
+  },
+  components: {
+    BookCard
+  }
+};
 </script>
 
 <style>
-.book-container {
-    display:flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-}
 </style>
