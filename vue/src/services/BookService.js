@@ -12,6 +12,10 @@ export default {
 
    addBook(book) {
        return http.post('/mybooks', book)
+   },
+
+   getMyBooks() {
+       return axios.get('/mybooks')
    }
 
 }

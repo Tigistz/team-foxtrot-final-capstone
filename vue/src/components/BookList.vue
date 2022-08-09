@@ -17,7 +17,7 @@ export default {
   props: {
     books: {
       type: Array
-    }
+    },
   },
   components: {
     BookCard
