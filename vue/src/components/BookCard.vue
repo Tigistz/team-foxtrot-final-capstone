@@ -75,8 +75,6 @@ export default {
    text-align: center; 
 }
 
-.book-author {
 
-}
 
 </style>
