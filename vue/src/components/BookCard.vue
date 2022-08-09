@@ -1,10 +1,11 @@
 <template>
   <div class="book">
-    <div class="book-title"></div>
-    <img class="book-cover" />
-    <div class="book-author"></div>
-    <div class="book-genre"></div>
-    <button class="buy"></button>
+    <h4>{{volumeInfo.title}}</h4>
+    <p>{{volumeInfo.authors[0]}}</p>
+
+    <div class="image" v-if="volumeInfo.imageLinks">
+        <img :src="volumeInfo.imageLinks.thumbnail">
+    </div>
 
 
   </div>
@@ -18,11 +19,19 @@
 
 export default {
     name: 'book-card',
-    data() {
-        return {
-            info: ''
-        }
+    props: {
+      book:{
+        type: Object,
+        required: true
+      }
     },
+    
+    computed: {
+      volumeInfo(){
+        return this.book.volumeInfo
+      }
+    },
+    
 
     methods: {
        getBooks() {
@@ -31,33 +40,6 @@ export default {
     }
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

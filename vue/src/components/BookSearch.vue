@@ -1,69 +1,65 @@
 <template>
-    <div class="container">
+  <div class="container">
+    <form v-on:submit.prevent="search">
       <div class="search-box">
         <input
           type="text"
           class="search-bar"
           placeholder="Search titles, authors,isbn ..."
           v-model="query"
-          @keypress="fetchBooks"
+        />
+        <input 
+        type="submit" 
+        value="Search" 
+        class="button"
         />
       </div>
-      <button>Press Enter to Continue</button>
-    </div>
+    </form>
+
+  <div>
+    <book-list :books="books"/>
+  </div>
+
+  </div>
 </template>
 
 <script>
+import axios from "axios";
+import BookList from './BookList.vue'
 export default {
   name: "app",
   data() {
     return {
       api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
-      url_base: " https://www.googleapis.com/books/v1/volumes?q=", 
-      inputType: "",
+      url_base: " https://www.googleapis.com/books/v1/volumes?q=",
+      inputType: "intitle:", //THIS IS TEMPORARY NEEDS TO CHANGE
       query: "",
       books: [],
     };
   },
+  components:{
+    BookList
+  },
   methods: {
-    fetchBooks(e) {
-      if (e.key == "Enter") {
-        fetch(
-          `${this.url_base}${this.inputType}${this.query}`
+    search() {
+      axios
+        .get(
+          `https://www.googleapis.com/books/v1/volumes?q=
+        ${this.inputType}
+        ${this.query}
+        &maxResults=8`
         )
-          .then((response) => {
-            // return response.json();
-            this.handleResponse(response);
-          })
-          .then(this.setResults);
-      }
+        .then((response) => {
+          console.log(response.data.items);
+          this.books = response.data.items;
+        });
     },
-    setResults(results) {
-      this.book = results;
-    },
-    handleResponse(response) {
-      let title = '';
-      let thumbnail = '';
-      let author = '';
-      for (let i = 0; i < 8; i++) {
-        let item = response.items[i];
-        title = item.volumeInfo.title;
-        author = item.volumeInfo.authors[0];
-        if('imageLinks' in item.volumeInfo){
-            thumbnail = item.volumeInfo.imageLinks.thumbnail;
-               
-        } 
-        else{
-            thumbnail = '';
-        }
-        console.log(title + author + thumbnail);
-      }
-    }
   },
 };
 </script>
 
-<style>
+
+<style scoped>
 * {
   margin: 0;
   padding: 0;

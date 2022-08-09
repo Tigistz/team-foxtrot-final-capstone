@@ -1,17 +1,13 @@
-
-
-
-
 <template>
 
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </div>
-    <the-header />
+    </div> -->
+    <!-- <the-header /> -->
     <router-view />
-    <the-footer />
+    <!-- <the-footer /> -->
   </div>
 
 
@@ -19,15 +15,15 @@
 
 <script>
 
-  import TheHeader from './components/TheHeader.vue';
-  import TheFooter from './components/TheFooter.vue';
+  // import TheHeader from './components/TheHeader.vue';
+  // import TheFooter from './components/TheFooter.vue';
 
   export default {
 
        name: 'App',
        components: {
-         TheHeader,
-         TheFooter
+        //  TheHeader,
+        //  TheFooter
        }
   }
 

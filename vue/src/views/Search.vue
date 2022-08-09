@@ -1,7 +1,8 @@
 <template>
   <div>
     <book-search />
-    <book-card />
+    <!-- <book-card /> -->
+    <book-list/>
   </div>
 </template>
 
@@ -9,14 +10,22 @@
 
 <script>
 import BookSearch from '../components/BookSearch.vue';
-import BookCard from '../components/BookCard.vue';
+//import BookCard from '../components/BookCard.vue';
+import BookList from '../components/BookList.vue';
 
 export default {
+  data() {
+    return{
+      books: []
+    }
+  },
   components: { 
     BookSearch,
-    BookCard,
+    // BookCard,
+    BookList
   },
-  name: "search"
+  name,
+    BookList: "search"
 };
 </script>
 
