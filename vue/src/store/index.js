@@ -21,36 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
 
-      books: [
-        {
-          title: "Kafka on the Shore",
-          author: "Haruki Murakami",
-          read: false,
-          isbn: "9781400079278",
-          genre:"Fiction" 
-        },
-        {
-          title: "The Girl With All the Gifts",
-          author: "M.R. Carey",
-          read: true,
-          isbn: "9780356500157",
-          genre:"Non-Fiction" 
-        },
-        {
-          title: "The Old Man and the Sea",
-          author: "Ernest Hemingway",
-          read: true,
-          isbn: "9780684830490",
-          genre:"Non-Fiction" 
-        },
-        {
-          title: "Le Petit Prince",
-          author: "Antoine de Saint-Exupéry",
-          read: false,
-          isbn: "9783125971400",
-          genre:"Fiction" 
-        }
-      ]
+      books: []
     },
 
   
@@ -73,6 +44,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SAVE_BOOK(state,book){
+      state.books.push(book);
     }
 
     

@@ -15,7 +15,7 @@ CREATE TABLE users (
 --CREATE SEQUENCE book_serial;
 CREATE TABLE inventory (
 	book_id SERIAL,
-	book_isbn varchar(40) NOT NULL,
+	book_isbn varchar(40),
 	user_id int, --NOT NULL,
 	book_title varchar(100) NOT NULL,
 	book_author varchar(100) NOT NULL,

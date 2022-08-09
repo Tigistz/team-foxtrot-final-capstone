@@ -8,15 +8,16 @@
 import BookCard from "./BookCard";
 
 export default {
-//   data(){
-//       return{
-//           books: []
-//       }
-//   },  
+  //comment out data section later and uncomment props section, delete dummy data
+  // data(){
+  //     return{
+  //         books: []
+  //     }
+  // },  
   props: {
     books: {
       type: Array
-    }
+    },
   },
   components: {
     BookCard

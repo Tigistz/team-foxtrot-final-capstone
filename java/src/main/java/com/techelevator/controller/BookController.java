@@ -32,11 +32,11 @@ public class BookController {
      *
      * @return List<Book>  -  a list of all books in the user's reading list
      */
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()") TODO uncomment this
     @RequestMapping(path = "/mybooks", method = RequestMethod.GET)
-    public List<Book> retrieveAllBooks(Principal principal) {
+    public List<Book> retrieveAllBooks() {
 
-        return dao.retrieveAllBooks(principal.getName());
+        return dao.retrieveAllBooks();
     }
 
 

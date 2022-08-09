@@ -14,6 +14,16 @@
         class="button"
         />
       </div>
+
+      <div>
+          <label for="filter">Search By</label>&nbsp;
+          <select name="filter" v-model="inputType">
+            <option value="inTitle:">Title</option>
+            <option value="inAuthor:">Author</option>
+            <option value="isbn:">ISBN</option>
+            <option value="subject:">Subject</option>
+          </select>
+        </div>
     </form>
 
   <div>
@@ -32,7 +42,7 @@ export default {
     return {
       api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
       url_base: " https://www.googleapis.com/books/v1/volumes?q=",
-      inputType: "intitle:", //THIS IS TEMPORARY NEEDS TO CHANGE
+      inputType: "inTitle:", //THIS IS TEMPORARY NEEDS TO CHANGE
       query: "",
       books: [],
     };
@@ -47,11 +57,12 @@ export default {
           `https://www.googleapis.com/books/v1/volumes?q=
         ${this.inputType}
         ${this.query}
-        &maxResults=8`
+        &maxResults=9`
         )
         .then((response) => {
           console.log(response.data.items);
           this.books = response.data.items;
+          
         });
     },
   },

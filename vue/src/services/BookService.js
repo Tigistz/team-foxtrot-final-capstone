@@ -1,8 +1,21 @@
 import axios from 'axios';
 
+const http = axios.create({
+    baseURL: "http://localhost:9000"
+  });
+
 export default {
 
-    search (searchType, searchString){
-        return axios.get('https://www.googleapis.com/books/v1/volumes?q=' + searchType + searchString);
-    }
+   search() {
+       return axios.get('/books')
+   },
+
+   addBook(book) {
+       return http.post('/mybooks', book)
+   },
+
+   getMyBooks() {
+       return axios.get('/mybooks')
+   }
+
 }

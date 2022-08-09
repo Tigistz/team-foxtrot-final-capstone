@@ -1,12 +1,15 @@
 <template>
   <div class="book">
     <h4>{{volumeInfo.title}}</h4>
-    <p>{{volumeInfo.authors[0]}}</p>
+    <div class="author" v-if="volumeInfo.authors"> 
+      <p>{{volumeInfo.authors[0]}}</p>
+    </div>
 
     <div class="image" v-if="volumeInfo.imageLinks">
         <img :src="volumeInfo.imageLinks.thumbnail">
     </div>
 
+    <button v-on:click.prevent="addBookToInventory()">Add to My Books</button> 
 
   </div>
  
@@ -14,11 +17,22 @@
 </template>
 
 <script>
-
+import BookService from '../services/BookService';
+//Instead of button click adding to reading list, it needs to post to ./myBooks as the book object
 
 
 export default {
     name: 'book-card',
+    data() {
+      return {
+      newBook: {
+        title: this.book.volumeInfo.title,
+        author: this.book.volumeInfo.authors[0],
+        genre: this.book.volumeInfo.categories[0],
+
+      }
+      }
+    },
     props: {
       book:{
         type: Object,
@@ -34,11 +48,18 @@ export default {
     
 
     methods: {
-       getBooks() {
-           
+      getBooks() {
+          
+      },
+      addBookToInventory() {
+      BookService.addBook(this.newBook).then( (response) => {
+       if (response.status === 201) {
+         this.$router.push('/mybooks');
        }
+    })
+    },
+      }
     }
-}
 </script>
 
 
