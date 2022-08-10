@@ -4,13 +4,13 @@
     <h2 class="welcome">Welcome jiahui8!</h2>
 
 
-    <book-list :books="books"/>
+    <my-book-list :books="books"/>
   </div>
 </template>
 
 <script>
 
-import BookList from '../components/BookList.vue';
+import MyBookList from '../components/MyBookList.vue';
 import BookService from '../services/BookService.js';
 
 export default {
@@ -21,7 +21,7 @@ export default {
         }
     },
     components: {
-        BookList,
+        MyBookList,
     },
     methods: {
         getBooks() {
