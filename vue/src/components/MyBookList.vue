@@ -6,7 +6,7 @@
 
 <script>
 import MyBookCard from "./MyBookCard";
-// import BookService from '../services/BookService';
+import BookService from '../services/BookService';
 
 
 export default {
@@ -24,14 +24,35 @@ export default {
   components: {
     MyBookCard
   },
-//   created() {
-//      retrieveFromInventory() {
-//       BookService.getMyBooks().then( (response) => {
-//        this.book = response.data;
-//        }
-//       )} 
-//   }
+  created() {
+    BookService.getMyBooks(1).then((response) => {
+      this.docs = response.data;
+    });
+  }
 };
+
+//  created() {
+//         retrieveFromInventory() {
+
+//         BookService.getMyBooks(1).then((response) => {
+//           this.docs = response.data
+  
+//     });
+    
+//   }
+
+//   // created() {
+//   //    retrieveFromInventory() {
+//   //      BookService.getMyBooks().then( (response) => {
+//   //      this.book = response.data;
+//   //      }
+//   //      },
+
+     
+      
+      
+  
+// };
 </script>
 
 <style>

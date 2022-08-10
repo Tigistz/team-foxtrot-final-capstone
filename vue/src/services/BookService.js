@@ -14,8 +14,10 @@ export default {
        return http.post('/mybooks', book)
    },
 
-   getMyBooks() {
-       return axios.get('/mybooks')
+
+
+   getMyBooks(id) {
+       return http.get(`/mybooks/${id}`)
    }
 
 }
