@@ -4,17 +4,36 @@
     <h2 class="welcome">Welcome jiahui8!</h2>
 
 
-    <book-list />
+    <book-list :books="books"/>
   </div>
 </template>
 
 <script>
 
 import BookList from '../components/BookList.vue';
+import BookService from '../services/BookService.js';
 
 export default {
+    name: 'myBooks',
+    data() {
+        return {
+            books: []
+        }
+    },
     components: {
-        BookList
+        BookList,
+    },
+    methods: {
+        getBooks() {
+
+        }
+        
+    },
+    created() {
+        BookService.getMyBooks().then( (response) => {
+               this.books = response.data;
+               console.log(response.data);
+    })
     }
 
 }

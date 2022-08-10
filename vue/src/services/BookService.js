@@ -1,13 +1,21 @@
 import axios from 'axios';
 
+const http = axios.create({
+    baseURL: "http://localhost:9000"
+  });
+
 export default {
 
    search() {
        return axios.get('/books')
    },
 
-   addBooks(book) {
-       return axios.post('/books', book)
+   addBook(book) {
+       return http.post('/mybooks', book)
+   },
+
+   getMyBooks() {
+       return axios.get('/mybooks')
    }
 
 }
