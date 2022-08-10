@@ -44,7 +44,13 @@ export default {
       url_base: " https://www.googleapis.com/books/v1/volumes?q=",
       inputType: "inTitle:", //THIS IS TEMPORARY NEEDS TO CHANGE
       query: "",
+      book: {
+        title: '',
+        author: '',
+        imageLinks: ''
+      },
       books: [],
+      googleApiBooks: []
     };
   },
   components:{
@@ -62,10 +68,28 @@ export default {
         .then((response) => {
           console.log(response.data.items);
           this.books = response.data.items;
-          
+
+          //this.googleApiBooks = response.data.items;
+          //for(let i=0; i<this.googleApiBooks.length; i++){
+          // this.book.title = this.googleApiBooks.volumeInfo.title;
+          // this.book.author = this.googleApiBooks.volumeInfo.author[0];
+          // this.book.imageLinks = this.googleApiBooks.volumeInfo.imageLinks.thumbnail;
+          // this.books.push(this.book);
+      //}
         });
     },
   },
+  // computed: {
+  //   addBooks(){
+  //     for(let i=0; i<this.googleApiBooks.length; i++){
+  //       this.book.title = this.googleApiBooks.volumeInfo.title;
+  //       this.book.author = this.googleApiBooks.volumeInfo.author[0];
+  //       this.book.imageLinks = this.googleApiBooks.volumeInfo.imageLinks.thumbnail;
+  //       this.books.push(this.book);
+  //     }
+  //     return this.books;
+  //   }
+  //}
 };
 </script>
 
