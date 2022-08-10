@@ -1,13 +1,13 @@
 <template>
   <div class="book">
-    <h4>{{volumeInfo.title}}</h4>
-    <div class="author" v-if="volumeInfo.authors"> 
-      <p>{{volumeInfo.authors[0]}}</p>
+    <h4>{{book.title}}</h4>
+    <div class="author" v-if="book.author"> 
+      <p>{{book.author}}</p>
     </div>
 
-    <div class="image" v-if="volumeInfo.imageLinks">
-        <img :src="volumeInfo.imageLinks.thumbnail">
-    </div>
+    <!-- <div class="image" v-if="">
+        <img :src="">
+    </div> -->
 
     <!-- <button v-on:click.prevent="addBookToInventory()">Add to My Books</button>  -->
 
@@ -25,12 +25,7 @@ export default {
     name: 'book-card',
     data() {
       return {
-      newBook: {
-        title: this.book.volumeInfo.title,
-        author: this.book.volumeInfo.authors[0],
-        genre: this.book.volumeInfo.categories[0],
 
-      }
       }
     },
     props: {
@@ -41,8 +36,8 @@ export default {
     },
     
     computed: {
-      volumeInfo(){
-        return this.book.volumeInfo
+      bookInfo(){
+        return this.myBook
       }
     },
     
