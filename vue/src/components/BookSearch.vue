@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import axios from "axios";
+
 import BookList from './BookList.vue'
 export default {
   name: "app",
@@ -58,38 +58,20 @@ export default {
   },
   methods: {
     search() {
-      axios
-        .get(
-          `https://www.googleapis.com/books/v1/volumes?q=
-        ${this.inputType}
-        ${this.query}
-        &maxResults=9`
-        )
-        .then((response) => {
-          console.log(response.data.items);
-          this.books = response.data.items;
+      
 
-          //this.googleApiBooks = response.data.items;
-          //for(let i=0; i<this.googleApiBooks.length; i++){
-          // this.book.title = this.googleApiBooks.volumeInfo.title;
-          // this.book.author = this.googleApiBooks.volumeInfo.author[0];
-          // this.book.imageLinks = this.googleApiBooks.volumeInfo.imageLinks.thumbnail;
-          // this.books.push(this.book);
-      //}
-        });
-    },
+      fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.inputType}${this.query}&orderBy=relevance&maxResults=9&key=AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg`)
+      .then( response => {
+
+        response.json().then(data => {
+          console.log(data);
+          this.books = data.items;
+        })
+
+      })
+    }
   },
-  // computed: {
-  //   addBooks(){
-  //     for(let i=0; i<this.googleApiBooks.length; i++){
-  //       this.book.title = this.googleApiBooks.volumeInfo.title;
-  //       this.book.author = this.googleApiBooks.volumeInfo.author[0];
-  //       this.book.imageLinks = this.googleApiBooks.volumeInfo.imageLinks.thumbnail;
-  //       this.books.push(this.book);
-  //     }
-  //     return this.books;
-  //   }
-  //}
+
 };
 </script>
 
