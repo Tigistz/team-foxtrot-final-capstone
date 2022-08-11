@@ -58,6 +58,15 @@ export default {
        }
     })
     },
+    // checkAuthor(){
+    //   if('imageLinks' in item.volumeInfo){
+    //       thumbnail = item.volumeInfo.imageLinks.thumbnail;
+              
+    //   } 
+    //   else{
+    //       thumbnail = '';
+    //   }
+   // }
       }
     }
 </script>

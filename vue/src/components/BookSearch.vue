@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import axios from "axios";
+
 import BookList from './BookList.vue'
 export default {
   name: "app",
@@ -44,7 +44,13 @@ export default {
       url_base: " https://www.googleapis.com/books/v1/volumes?q=",
       inputType: "inTitle:", //THIS IS TEMPORARY NEEDS TO CHANGE
       query: "",
+      book: {
+        title: '',
+        author: '',
+        imageLinks: ''
+      },
       books: [],
+      googleApiBooks: []
     };
   },
   components:{
@@ -52,20 +58,20 @@ export default {
   },
   methods: {
     search() {
-      axios
-        .get(
-          `https://www.googleapis.com/books/v1/volumes?q=
-        ${this.inputType}
-        ${this.query}
-        &maxResults=9`
-        )
-        .then((response) => {
-          console.log(response.data.items);
-          this.books = response.data.items;
-          
-        });
-    },
+      
+
+      fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.inputType}${this.query}&orderBy=relevance&maxResults=9&key=AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg`)
+      .then( response => {
+
+        response.json().then(data => {
+          console.log(data);
+          this.books = data.items;
+        })
+
+      })
+    }
   },
+
 };
 </script>
 
