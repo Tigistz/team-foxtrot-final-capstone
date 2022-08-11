@@ -30,6 +30,7 @@
 
 </script>
 
+
 <style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -1,6 +1,6 @@
 <template>
    <div>
-       <div id = "container">
+       <!-- <div id = "container">
             <img id="banner-image" src=" " alt="">
     
             <nav>
@@ -11,9 +11,10 @@
                 <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.currentToken == ''">Login</router-link>
                 <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.currentToken != ''">Logout</router-link>
             
-             <!-- <p v-if="$store.state.currentToken != ''">Welcome {{$store.state.currentUser.username}}</p> -->
+             
             </nav>
-            </div>
+            </div> -->
+<!-- <p v-if="$store.state.currentToken != ''">Welcome {{$store.state.currentUser.username}}</p> -->
 
 
 
@@ -35,8 +36,7 @@
 
 
 
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -92,32 +92,5 @@ export default {
 </script>
 
 <style scoped>
-  #container {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-  }
-
-  #banner-image {
-      margin-bottom: 40px;
-      width: 10%;
-      height: auto;
-  }
-
-  nav {
-      margin-bottom: 40px;
-      display: flex;
-  }
-
-  nav a {
-      padding: 15px;
-      background-color: rgb(3, 189, 3);
-      color:black
-  }
-
-  nav a:hover {
-      background-color: green;
-      color: white;
-  }
+ 
 </style>
