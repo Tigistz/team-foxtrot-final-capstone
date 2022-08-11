@@ -24,18 +24,12 @@ public class JDBCBookDAO implements BookDAO{
     public List<Book> retrieveAllBooks() {
         List<Book> books = new ArrayList<>();
 
-         String sql = "SELECT * " +
-                "FROM inventory " +
-                "WHERE user_id = ? ;";
-
-//        String sql = "SELECT * " +
-//                "FROM inventory " +
-//               " WHERE userid = ?";
-//                //"JOIN users ON users.userid = inventory.userid";
-//                //WHERE users.userid = ?;
+        String sql = "SELECT * " +
+                "FROM inventory ";
+                //"JOIN users ON users.userid = inventory.userid";
+                //WHERE users.userid = ?;
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);  //, principal.userId);
-
 
         while(results.next()) {
 
@@ -46,10 +40,9 @@ public class JDBCBookDAO implements BookDAO{
     }
 
     @Override
-
-    public Book addBook(Book newBook ){
-        String bookSQL = "INSERT INTO inventory (book_isbn, book_title, book_author, book_genre,user_id) " +  //TODO add the userID from principal
-                "VALUES(?,?,?,?,?) RETURNING book_id";
+    public Book addBook(Book newBook){
+        String bookSQL = "INSERT INTO inventory (book_isbn, book_title, book_author, book_genre) " +  //TODO add the userID from principal
+                "VALUES(?,?,?,?) RETURNING book_id";
         Integer id = jdbcTemplate.queryForObject(bookSQL, Integer.class,
                 newBook.getIsbn(),
                 newBook.getTitle(),
