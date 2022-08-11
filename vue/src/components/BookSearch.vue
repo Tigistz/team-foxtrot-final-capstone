@@ -18,10 +18,11 @@
       <div>
           <label for="filter">Search By</label>&nbsp;
           <select name="filter" v-model="inputType">
-            <option value="inTitle:">Title</option>
-            <option value="inAuthor:">Author</option>
-            <option value="isbn:">ISBN</option>
-            <option value="subject:">Subject</option>
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <!-- <option value="isbn:">ISBN</option> -->
+            <option value="subject">Subject</option>
+            
           </select>
         </div>
     </form>
@@ -42,7 +43,7 @@ export default {
     return {
       api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
       url_base: " https://www.googleapis.com/books/v1/volumes?q=",
-      inputType: "inTitle:", //THIS IS TEMPORARY NEEDS TO CHANGE
+      inputType: "q", //THIS IS TEMPORARY NEEDS TO CHANGE
       query: "",
       book: {
         title: '',
@@ -60,18 +61,20 @@ export default {
     search() {
       
 
-      fetch(`https://www.googleapis.com/books/v1/volumes?q=${this.inputType}${this.query}&orderBy=relevance&maxResults=9&key=AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg`)
+      fetch(`http://openlibrary.org/search.json?${this.inputType}=${this.query}&limit=11`)
       .then( response => {
 
         response.json().then(data => {
           console.log(data);
-          this.books = data.items;
+          this.books = data.docs;
         })
 
       })
     }
   },
-
+  //https://www.googleapis.com/books/v1/volumes?q=${this.inputType}${this.query}&orderBy=relevance&maxResults=9&key=AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg
+  //          console.log(data);
+          // this.books = data.items;
 };
 </script>
 
