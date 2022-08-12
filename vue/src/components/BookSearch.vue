@@ -98,9 +98,10 @@ export default {
       book: {
         title: "",
         author: "",
-        imageLinks: "",
+        isbn: "",
       },
       books: [],
+      testArray: [],
       googleApiBooks: [],
     };
   },
@@ -114,6 +115,14 @@ export default {
       ).then((response) => {
         response.json().then((data) => {
           console.log(data);
+
+          data.docs.forEach(item =>{
+            this.book.title = item.title;
+            this.book.author = item.author_name[0];
+            this.book.isbn = item.isbn[0];
+            this.testArray.unshift(this.book);
+          })
+
           this.books = data.docs;
         });
       });
