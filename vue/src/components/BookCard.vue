@@ -23,9 +23,9 @@
     <div class="image" v-if="volumeInfo.imageLinks">
         <img :src="volumeInfo.imageLinks.thumbnail">
     </div> -->
-
+    <div class="example-thing">
     <button class="submit-button" v-on:click.prevent="addBookToInventory()">Add to My Books</button> 
-
+</div>
   </div>
  
 
@@ -93,6 +93,12 @@ export default {
 <style scoped>
 
 .submit-button {
+  /* align-items: flex-end; */
+}
+
+.example-thing{
+  display: flex;
+  justify-content: center;
   align-items: flex-end;
 }
 
