@@ -28,4 +28,4 @@ COMMIT TRANSACTION;
 
 ROLLBACK;
 
-
+select * from inventory
