@@ -16,7 +16,11 @@ CREATE TABLE users (
 CREATE TABLE inventory (
 	book_id SERIAL,
 	book_isbn varchar(40),
+<<<<<<< HEAD
 	user_id int,
+=======
+	user_id int, --NOT NULL,
+>>>>>>> be736c66ec3bd2720bbf47d8f06f62a51b4015fe
 	book_title varchar(100),
 	book_author varchar(100),
 	book_genre varchar(100),
@@ -28,6 +32,10 @@ COMMIT TRANSACTION;
 
 ROLLBACK;
 
+<<<<<<< HEAD
 SELECT * FROM inventory;
 
+=======
+SELECT * FROM inventory
+>>>>>>> be736c66ec3bd2720bbf47d8f06f62a51b4015fe
 

@@ -10,6 +10,7 @@ import MyBookCard from "./MyBookCard";
 
 
 export default {
+  name: "myBooks",
   //comment out data section later and uncomment props section, delete dummy data
   // data(){
   //     return{

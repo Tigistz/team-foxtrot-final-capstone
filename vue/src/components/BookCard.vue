@@ -1,13 +1,28 @@
 <template>
   <div class="book">
-    <h4>{{volumeInfo.title}}</h4>
+
+    <h4>{{book.title}}</h4>
+    <p v-if="book.author_name[0]">{{book.author_name[0]}}</p>
+    
+    <div class="imageParent">
+    <img class="imageOne image" v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn[1] + '-M.jpg'" />
+    <img 
+    src="../assets/No_Preview_image.png"
+    class="imageTwo image" 
+    />
+    </div>
+    <p>ISBN: {{book.isbn[1]}}</p>
+
+
+
+    <!-- <h4>{{volumeInfo.title}}</h4>
     <div class="author" v-if="volumeInfo.authors"> 
       <p>{{volumeInfo.authors[0]}}</p>
     </div>
 
     <div class="image" v-if="volumeInfo.imageLinks">
         <img :src="volumeInfo.imageLinks.thumbnail">
-    </div>
+    </div> -->
 
     <button v-on:click.prevent="addBookToInventory()">Add to My Books</button> 
 
@@ -26,11 +41,12 @@ export default {
     data() {
       return {
       newBook: {
-        title: this.book.volumeInfo.title,
-        author: this.book.volumeInfo.authors[0],
-        genre: this.book.volumeInfo.categories[0],
-        // image: this.book.volumeInfo.imageLinks.thumbnail
-
+        // title: this.book.volumeInfo.title,
+        // author: this.book.volumeInfo.authors[0],
+        // genre: this.book.volumeInfo.categories[0],
+        title: this.book.title,
+        author: this.book.author_name[0],
+        genre: this.book.subject[0],
       }
       }
     },
@@ -59,6 +75,15 @@ export default {
        }
     })
     },
+    // checkAuthor(){
+    //   if('imageLinks' in item.volumeInfo){
+    //       thumbnail = item.volumeInfo.imageLinks.thumbnail;
+              
+    //   } 
+    //   else{
+    //       thumbnail = '';
+    //   }
+   // }
       }
     }
 </script>
@@ -66,6 +91,31 @@ export default {
 
 
 <style>
+
+.imageParent{
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.image {
+    position: relative;
+    width: 150px;
+    height: 200px;
+    /* border: 1px solid red; */
+}
+.imageOne {
+    position: relative;
+  top: 0;
+  left: 0;
+    z-index: 1;
+}
+.imageTwo {
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    z-index: 0;
+}
 .book {  
   display: inline-block;
   width: 230px;

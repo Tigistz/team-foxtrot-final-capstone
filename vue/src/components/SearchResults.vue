@@ -17,7 +17,7 @@ export default {
   components: { 
       BookCard,
       BookSearch },
-    name: 'books',
+    name: 'search',
     data() {
         return {
             books: [],

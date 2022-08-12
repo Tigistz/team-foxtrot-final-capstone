@@ -4,13 +4,15 @@ import com.techelevator.model.Book;
 import com.techelevator.model.BookNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.sql.DataSource;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-
+@CrossOrigin
 @Component
 public class JDBCBookDAO implements BookDAO{
 
@@ -43,13 +45,14 @@ public class JDBCBookDAO implements BookDAO{
     public Book addBook(Book newBook){
         String bookSQL = "INSERT INTO inventory (book_isbn, book_title, book_author, book_genre) " +  //TODO add the userID from principal
                 "VALUES(?,?,?,?) RETURNING book_id";
-        Integer id = jdbcTemplate.queryForObject(bookSQL, Integer.class,
+        //Integer id =
+                jdbcTemplate.queryForObject(bookSQL, Integer.class,
                 newBook.getIsbn(),
                 newBook.getTitle(),
                 newBook.getAuthor(),
                 newBook.getGenre()
                 );
-        newBook.setBookId(id);
+        //newBook.setBookId(id);
         return newBook;
 
     }

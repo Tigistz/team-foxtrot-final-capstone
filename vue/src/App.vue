@@ -5,7 +5,7 @@
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div> -->
-    <!-- <the-header /> -->
+    <the-header />
     <router-view />
     <!-- <the-footer /> -->
   </div>
@@ -15,20 +15,21 @@
 
 <script>
 
-  // import TheHeader from './components/TheHeader.vue';
+  import TheHeader from './components/TheHeader.vue';
   // import TheFooter from './components/TheFooter.vue';
 
   export default {
 
        name: 'App',
        components: {
-        //  TheHeader,
+         TheHeader,
         //  TheFooter
        }
   }
 
 
 </script>
+
 
 <style scoped>
 #app {

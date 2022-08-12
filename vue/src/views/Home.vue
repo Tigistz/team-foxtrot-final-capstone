@@ -23,16 +23,20 @@
       </div>
  </main> -->
   
-  <book-search />
+      <img 
+    src="../assets/home-page-books-image.jpg"
+    class="imageTwo image" 
+    />
+
 </template>
 
 
 
 <script>
-import BookSearch from '../components/BookSearch.vue';
+// import BookSearch from '../components/BookSearch.vue';
 export default {
   components: { 
-    BookSearch,
+    // BookSearch,
   },
   name: "home"
 };
@@ -51,7 +55,7 @@ body {
 }
 
 home {
-  background-image: url('/assets/home-page-books-image.jpg');
+  /* background-image: url('/assets/home-page-books-image.jpg'); */
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
