@@ -8,73 +8,120 @@
           placeholder="Search titles, authors,isbn ..."
           v-model="query"
         />
-        <input 
-        type="submit" 
-        value="Search" 
-        class="button"
-        />
+        
       </div>
 
-      <div>
-          <label for="filter">Search By</label>&nbsp;
-          <select name="filter" v-model="inputType">
-            <option value="title">Title</option>
-            <option value="author">Author</option>
-            <!-- <option value="isbn:">ISBN</option> -->
-            <option value="subject">Subject</option>
-            
-          </select>
-        </div>
+
+    <b-form-group v-slot="{ ariaDescribedby }">
+      <b-form-radio-group
+        id="btn-radios-1"
+        v-model="searchType"
+        :options="options"
+        :aria-describedby="ariaDescribedby"
+        name="radios-btn-default"
+        buttons
+      ></b-form-radio-group>
+    </b-form-group>
+
+
+      <input type="submit" value="Search" class="button" />
+
+      <!-- <div>
+        <label for="filter">Search By</label>&nbsp;
+        <select name="filter" v-model="inputType">
+          <option value="title">Title</option>
+          <option value="author">Author</option>
+          <option value="isbn:">ISBN</option> comment this out
+          <option value="subject">Subject</option>
+        </select>
+      </div> -->
     </form>
 
-  <div>
-    <book-list :books="books"/>
-  </div>
+      <!-- <input id="two" type="radio" value="two" v-model="searchType"/> -->
 
+
+      <!-- Old Radio Buttons vvvvvvv -->
+      <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+          <input
+            type="radio"
+            name="options"
+            id="title"
+            autocomplete="off"
+            
+            value="title"
+            v-model="searchType"
+            checked
+          />
+          Title
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="author" autocomplete="off" 
+            v-bind:value="author"
+            v-model="searchType"
+          />
+          Author
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="options" id="subject" autocomplete="off" 
+            value="subject"
+            v-model="searchType"
+            />
+          Subject
+        </label>
+      
+      </div> -->
+
+
+
+    <div>
+      <book-list :books="books" />
+    </div>
   </div>
 </template>
 
 <script>
-
-import BookList from './BookList.vue'
+import BookList from "./BookList.vue";
 export default {
   name: "app",
   data() {
     return {
+      options: [
+        { text: 'Title', value: 'title' },
+        { text: 'Author', value: 'author' },
+        { text: 'Subject', value: 'subject' }
+      ],
       api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
       url_base: " https://www.googleapis.com/books/v1/volumes?q=",
-      inputType: "q", //THIS IS TEMPORARY NEEDS TO CHANGE
+      searchType: 'title', //THIS IS TEMPORARY NEEDS TO CHANGE
       query: "",
       book: {
-        title: '',
-        author: '',
-        imageLinks: ''
+        title: "",
+        author: "",
+        imageLinks: "",
       },
       books: [],
-      googleApiBooks: []
+      googleApiBooks: [],
     };
   },
-  components:{
-    BookList
+  components: {
+    BookList,
   },
   methods: {
     search() {
-      
-
-      fetch(`http://openlibrary.org/search.json?${this.inputType}=${this.query}&limit=11`)
-      .then( response => {
-
-        response.json().then(data => {
+      fetch(
+        `http://openlibrary.org/search.json?${this.searchType}=${this.query}&limit=15`
+      ).then((response) => {
+        response.json().then((data) => {
           console.log(data);
           this.books = data.docs;
-        })
-
-      })
-    }
+        });
+      });
+    },
   },
   //https://www.googleapis.com/books/v1/volumes?q=${this.inputType}${this.query}&orderBy=relevance&maxResults=9&key=AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg
   //          console.log(data);
-          // this.books = data.items;
+  // this.books = data.items;
 };
 </script>
 

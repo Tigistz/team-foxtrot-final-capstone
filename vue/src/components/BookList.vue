@@ -26,4 +26,8 @@ export default {
 </script>
 
 <style>
+.book-list{
+  display: flex;
+  flex-wrap: wrap;
+}
 </style>
