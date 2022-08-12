@@ -8,6 +8,7 @@ import store from '../store/index'
 import BookSearchPage from '../views/BookSearchPage.vue'
 import Search from '../views/Search.vue'
 import MyBooks from '../views/MyBooks.vue'
+import AddBook from '../views/AddBook.vue'
 
 
 Vue.use(Router)
@@ -78,6 +79,14 @@ const router = new Router({
       path: "/register",
       name: "register",
       component: Register,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/addbook",
+      name: "addbook",
+      component: AddBook,
       meta: {
         requiresAuth: false
       }
