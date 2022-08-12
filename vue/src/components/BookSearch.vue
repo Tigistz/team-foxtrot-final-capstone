@@ -116,11 +116,14 @@ export default {
         response.json().then((data) => {
           console.log(data);
 
+          this.testArray = [];
           data.docs.forEach(item =>{
+            this.book = {};
             this.book.title = item.title;
             this.book.author = item.author_name[0];
             this.book.isbn = item.isbn[0];
-            this.testArray.unshift(this.book);
+            // console.log(this.book.title)
+            this.testArray.push(this.book);
           })
 
           this.books = data.docs;
