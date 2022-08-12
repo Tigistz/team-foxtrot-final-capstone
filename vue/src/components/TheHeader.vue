@@ -1,40 +1,5 @@
 <template>
    <div>
-       <!-- <div id = "container">
-            <img id="banner-image" src=" " alt="">
-    
-            <nav>
-                <router-link v-bind:to="{ name: 'home'}">Home</router-link>
-                <router-link v-bind:to="{ name: 'myBooks'}">My Books</router-link>
-                <a href="#">About</a>
-                <router-link v-bind:to="{ name: 'search'}">Search</router-link>
-                <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.currentToken == ''">Login</router-link>
-                <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.currentToken != ''">Logout</router-link>
-            
-             
-            </nav>
-            </div> -->
-<!-- <p v-if="$store.state.currentToken != ''">Welcome {{$store.state.currentUser.username}}</p> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Team Foxtrot Books</a>
@@ -53,6 +18,13 @@
       <li class="nav-item">
         <!-- <a class="nav-link" href="#">Mybooks anchor Link</a> -->
         <router-link class="nav-link" v-bind:to="{ name: 'myBooks'}">My Books</router-link>
+      </li>
+            <li class="nav-item">
+        <!-- <a class="nav-link" href="#">Mybooks anchor Link</a> -->
+        <router-link class="nav-link" 
+        v-bind:to="{ name: 'addBook'}"
+        v-if="$store.state.currentToken != ''"
+        >Add a Book</router-link>
       </li>
       <li class="nav-item">
         <!-- <a class="nav-link disabled" href="#">Login Anchor</a> -->
