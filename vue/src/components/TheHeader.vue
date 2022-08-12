@@ -1,43 +1,9 @@
 <template>
    <div>
-       <!-- <div id = "container">
-            <img id="banner-image" src=" " alt="">
-    
-            <nav>
-                <router-link v-bind:to="{ name: 'home'}">Home</router-link>
-                <router-link v-bind:to="{ name: 'myBooks'}">My Books</router-link>
-                <a href="#">About</a>
-                <router-link v-bind:to="{ name: 'search'}">Search</router-link>
-                <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.currentToken == ''">Login</router-link>
-                <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.currentToken != ''">Logout</router-link>
-            
-             
-            </nav>
-            </div> -->
-<!-- <p v-if="$store.state.currentToken != ''">Welcome {{$store.state.currentUser.username}}</p> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Team Foxtrot Books</a>
+  <!-- <a class="navbar-brand" href="#">Team Foxtrot Books</a> -->
+  <router-link class="navbar-brand" v-bind:to="{ name: 'home'}">Team Foxtrot Books</router-link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -53,6 +19,13 @@
       <li class="nav-item">
         <!-- <a class="nav-link" href="#">Mybooks anchor Link</a> -->
         <router-link class="nav-link" v-bind:to="{ name: 'myBooks'}">My Books</router-link>
+      </li>
+            <li class="nav-item">
+        <!-- <a class="nav-link" href="#">Mybooks anchor Link</a> -->
+        <router-link class="nav-link" 
+        v-bind:to="{ name: 'addBook'}"
+        v-if="$store.state.currentToken != ''"
+        >Add a Book</router-link>
       </li>
       <li class="nav-item">
         <!-- <a class="nav-link disabled" href="#">Login Anchor</a> -->
@@ -83,5 +56,16 @@ export default {
 </script>
 
 <style scoped>
+
+.navbar-brand {
+  margin-left: 2vw;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar-expand-lg .navbar-collapse {
+  justify-content: flex-end;
+}
  
 </style>

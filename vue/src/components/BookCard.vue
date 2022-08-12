@@ -1,7 +1,7 @@
 <template>
   <div class="book">
 
-    <h4>{{book.title}}</h4>
+    <h5>{{book.title}}</h5>
     <p v-if="book.author_name[0]">{{book.author_name[0]}}</p>
     
     <div class="imageParent">
@@ -24,7 +24,7 @@
         <img :src="volumeInfo.imageLinks.thumbnail">
     </div> -->
 
-    <button v-on:click.prevent="addBookToInventory()">Add to My Books</button> 
+    <button class="submit-button" v-on:click.prevent="addBookToInventory()">Add to My Books</button> 
 
   </div>
  
@@ -90,7 +90,11 @@ export default {
 
 
 
-<style>
+<style scoped>
+
+.submit-button {
+  /* justify-self: flex-end; */
+}
 
 .imageParent{
   position: relative;
@@ -113,13 +117,15 @@ export default {
 .imageTwo {
     position: absolute;
     top: 0px;
-    left: 30px;
+    left: 15px;
     z-index: 0;
 }
 .book {  
-  display: inline-block;
-  width: 230px;
-  height: 390px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 200px;
+  height: 450px;
   box-shadow: 0 0 20px #aaa;
   margin: 25px;
   padding: 10px 10px 0 10px;

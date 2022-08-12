@@ -5,7 +5,7 @@
 <script>
 import BookForm from '../components/BookForm.vue'
 export default {
-    name: 'addbook',
+    name: 'addBook',
   components: { BookForm },
 
 }
