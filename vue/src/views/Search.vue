@@ -1,44 +1,31 @@
-<!--<template>
-  <div class="home">
-    <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
-    <h3 id="intro">ALPHA Book Library</h3>
-    <img src="https://unsplash.com/photos/FKqxZ58bVjU" alt="">
-  </div>
-</template> -->
-
 <template>
-  
-    <!--<main>
-      <div class="search-box">
-      <div class="home">
-        <input 
-          type="text" 
-          class="search-bar" 
-          placeholder="Search titles, authors,isbn ..."
-          v-model="query"
-          @keypress="fetchBooks"
-        />
-      </div>
-      </div>
- </main> -->
-  
-      <img 
-    src="../assets/logo-transparent-reading-logo.png"
-    class="imageTwo image" 
-    />
-
+  <div>
+    <book-search />
+    <!-- <book-card /> -->
+    <book-list/>
+  </div>
 </template>
 
 
 
 <script>
-// import BookSearch from '../components/BookSearch.vue';
+import BookSearch from '../components/BookSearch.vue';
+//import BookCard from '../components/BookCard.vue';
+import BookList from '../components/BookList.vue';
+
 export default {
-  components: { 
-    // BookSearch,
+  data() {
+    return{
+      books: []
+    }
   },
-  name: "home"
+  components: { 
+    BookSearch,
+    // BookCard,
+    BookList
+  },
+  name,
+    BookList: "search"
 };
 </script>
 
@@ -55,7 +42,7 @@ body {
 }
 
 home {
-  /* background-image: url('/assets/home-page-books-image.jpg'); */
+  background-image: url('../assets/home-page-books-image.jpg');
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
