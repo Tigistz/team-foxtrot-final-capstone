@@ -157,7 +157,8 @@ main {
 
 .search-box {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
 }
 
 .search-box .search-bar {
