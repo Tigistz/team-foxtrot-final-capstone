@@ -25,7 +25,7 @@
   
       <img 
     src="../assets/home-page-books-image.jpg"
-    class="imageTwo image" 
+    class="imageTwo" 
     />
 
 </template>
@@ -67,7 +67,7 @@ main {
   min-height: 100vh;
   padding: 25px;
 
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75));
+  /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)); */
 }
 
 .search-box {
@@ -142,4 +142,9 @@ main {
   font-style: italic;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
+
+.imageTwo {
+  /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.), rgba(0, 0, 0, 0.8)); */
+}
+
 </style>

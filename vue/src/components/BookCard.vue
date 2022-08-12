@@ -1,7 +1,7 @@
 <template>
   <div class="book">
 
-    <h4>{{book.title}}</h4>
+    <h5>{{book.title}}</h5>
     <p v-if="book.author_name[0]">{{book.author_name[0]}}</p>
     
     <div class="imageParent">
@@ -93,13 +93,7 @@ export default {
 <style scoped>
 
 .submit-button {
-  /* align-items: flex-end; */
-}
-
-.example-thing{
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  /* justify-self: flex-end; */
 }
 
 .imageParent{
@@ -129,6 +123,7 @@ export default {
 .book {  
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   width: 200px;
   height: 450px;
   box-shadow: 0 0 20px #aaa;
