@@ -16,10 +16,10 @@ CREATE TABLE users (
 CREATE TABLE inventory (
 	book_id SERIAL,
 	book_isbn varchar(40),
-	user_id int, --NOT NULL,
-	book_title varchar(100) NOT NULL,
-	book_author varchar(100) NOT NULL,
-	book_genre varchar(100) NOT NULL,
+	user_id int,
+	book_title varchar(100),
+	book_author varchar(100),
+	book_genre varchar(100),
 	CONSTRAINT pk_inventory PRIMARY KEY (book_id)
 	--CONSTRAINT fk_inventory FOREIGN KEY (user_id) references users(user_id)
 );
@@ -27,5 +27,7 @@ CREATE TABLE inventory (
 COMMIT TRANSACTION;
 
 ROLLBACK;
+
+SELECT * FROM inventory;
 
 

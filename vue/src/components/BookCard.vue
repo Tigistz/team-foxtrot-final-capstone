@@ -29,6 +29,7 @@ export default {
         title: this.book.volumeInfo.title,
         author: this.book.volumeInfo.authors[0],
         genre: this.book.volumeInfo.categories[0],
+        // image: this.book.volumeInfo.imageLinks.thumbnail
 
       }
       }
