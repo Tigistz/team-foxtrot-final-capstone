@@ -1,19 +1,19 @@
 <template>
   <div class="book">
     <h5>{{ book.title }}</h5>
-    <p v-if="book.author_name[0]">{{ book.author_name[0] }}</p>
+    <p v-if="book.author">{{ book.author }}</p>
 
     <div class="imageParent">
       <img
         class="imageOne image"
         v-if="book.isbn"
         v-bind:src="
-          'http://covers.openlibrary.org/b/isbn/' + book.isbn[1] + '-M.jpg'
+          'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'
         "
       />
       <img src="../assets/No_Preview_image.png" class="imageTwo image" />
     </div>
-    <p>ISBN: {{ book.isbn[1] }}</p>
+    <p>ISBN: {{ book.isbn }}</p>
 
     <div class="example-thing">
       <button type="button" class="btn btn-outline-secondary" v-on:click.prevent="addBookToInventory()">
@@ -36,9 +36,9 @@ export default {
         // author: this.book.volumeInfo.authors[0],
         // genre: this.book.volumeInfo.categories[0],
         title: this.book.title,
-        author: this.book.author_name[0],
-        genre: this.book.subject[0],
-        isbn: this.book.isbn[0]
+        author: this.book.author,
+        genre: this.book.subject,
+        isbn: this.book.isbn
       },
     };
   },
@@ -128,8 +128,6 @@ export default {
   text-align: center;
 }
 
-.book-author {
-}
 
 p {
   color: rgba(255, 255, 255, 0.884);

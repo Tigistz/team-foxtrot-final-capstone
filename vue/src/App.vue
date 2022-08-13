@@ -1,10 +1,7 @@
 <template>
 
   <div id="app">
-    <!-- <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-    </div> -->
+
     <the-header />
     <router-view />
     <!-- <the-footer /> -->
@@ -42,12 +39,14 @@
   background-image: 
   linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.5)),
   url('./assets/background-eleven.jpg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   
   background-size: cover;
   background-position: center;
   transition: 0.4s;
-  height: 100vh;
-
+  /* height: 100vh; */
+  
   
   /* margin-top: 60px; */
 }
