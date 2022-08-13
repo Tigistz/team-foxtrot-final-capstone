@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+@PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
 public class BookController {
@@ -34,9 +35,9 @@ public class BookController {
      */
 //    @PreAuthorize("isAuthenticated()") TODO uncomment this
     @RequestMapping(path = "/mybooks", method = RequestMethod.GET)
-    public List<Book> retrieveAllBooks() {
+    public List<Book> retrieveAllBooks(Principal principal) {
 
-        return dao.retrieveAllBooks();
+        return dao.retrieveAllBooks(principal);
     }
 
 
@@ -47,8 +48,8 @@ public class BookController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/mybooks", method = RequestMethod.POST)
-    public Book addBook(@RequestBody Book book) {
-        return dao.addBook(book);
+    public Book addBook(@RequestBody Book book, Principal principal) {
+        return dao.addBook(book, principal);
     }
 
 
@@ -68,8 +69,8 @@ public class BookController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/mybooks/{bookId}", method = RequestMethod.DELETE)
-    public void deleteBook(@PathVariable int bookId) throws BookNotFoundException {
-        dao.deleteBook(bookId);
+    public void deleteBook(@PathVariable int bookId, Principal principal) throws BookNotFoundException {
+        dao.deleteBook(bookId, principal);
     }
 
 
