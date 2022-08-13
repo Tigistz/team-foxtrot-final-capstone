@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
-@PreAuthorize("isAuthenticated()")
+
 @RestController
+@PreAuthorize("isAuthenticated()")
 @CrossOrigin
 public class BookController {
 
