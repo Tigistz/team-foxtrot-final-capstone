@@ -29,8 +29,8 @@
       </li>
       <li class="nav-item">
         <!-- <a class="nav-link disabled" href="#">Login Anchor</a> -->
-        <router-link class="nav-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.currentToken == ''">Login</router-link>
-        <router-link class="nav-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.currentToken != ''">Logout</router-link>
+        <router-link class="nav-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token == ''">Login</router-link>
+        <router-link class="nav-link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </li>
     </ul>
   </div>
@@ -66,6 +66,7 @@ export default {
 }
 .navbar-expand-lg .navbar-collapse {
   justify-content: flex-end;
+  margin-right: 2vw;
 }
  
 </style>

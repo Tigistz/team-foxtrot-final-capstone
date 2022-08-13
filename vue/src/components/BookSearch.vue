@@ -5,7 +5,7 @@
         <input
           type="text"
           class="search-bar"
-          placeholder="Search titles, authors,isbn ..."
+          placeholder="Search titles, authors, isbn ..."
           v-model="query"
         />
         
@@ -175,7 +175,7 @@ main {
   background: none;
 
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 0px 16px 0px 16px;
   transition: 0.4s;
 }
