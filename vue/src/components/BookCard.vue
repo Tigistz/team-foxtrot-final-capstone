@@ -16,7 +16,7 @@
     <p>ISBN: {{ book.isbn[1] }}</p>
 
     <div class="example-thing">
-      <button class="submit-button" v-on:click.prevent="addBookToInventory()">
+      <button type="button" class="btn btn-outline-secondary" v-on:click.prevent="addBookToInventory()">
         Add to My Books
       </button>
     </div>
@@ -71,8 +71,11 @@ export default {
 
 
 <style scoped>
-.submit-button {
+.btn-outline-secondary {
   /* justify-self: flex-end; */
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgba(255, 255, 255, 0.884);
 }
 
 .imageParent {
@@ -105,11 +108,12 @@ export default {
   justify-content: space-evenly;
   width: 200px;
   height: 450px;
-  box-shadow: 0 0 20px #aaa;
+  /* box-shadow: 0 0 20px #aaa; */
   margin: 25px;
   padding: 10px 10px 0 10px;
   vertical-align: top;
   transition: height 1s;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .book-cover {
@@ -126,4 +130,13 @@ export default {
 
 .book-author {
 }
+
+p {
+  color: rgba(255, 255, 255, 0.884);
+}
+
+h5 {
+  color: rgba(255, 255, 255, 0.884);
+}
+
 </style>

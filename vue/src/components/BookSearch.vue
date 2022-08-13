@@ -5,7 +5,7 @@
         <input
           type="text"
           class="search-bar"
-          placeholder="Search titles, authors,isbn ..."
+          placeholder="Search titles, authors, isbn ..."
           v-model="query"
         />
         
@@ -98,10 +98,9 @@ export default {
       book: {
         title: "",
         author: "",
-        isbn: "",
+        imageLinks: "",
       },
       books: [],
-      testArray: [],
       googleApiBooks: [],
     };
   },
@@ -115,17 +114,6 @@ export default {
       ).then((response) => {
         response.json().then((data) => {
           console.log(data);
-
-          this.testArray = [];
-          data.docs.forEach(item =>{
-            this.book = {};
-            this.book.title = item.title;
-            this.book.author = item.author_name[0];
-            this.book.isbn = item.isbn[0];
-            // console.log(this.book.title)
-            this.testArray.push(this.book);
-          })
-
           this.books = data.docs;
         });
       });
@@ -187,7 +175,7 @@ main {
   background: none;
 
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 0px 16px 0px 16px;
   transition: 0.4s;
 }
