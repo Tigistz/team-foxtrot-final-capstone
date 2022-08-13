@@ -3,6 +3,7 @@ package com.techelevator.controller;
 //import com.techelevator.model.HomeNotFoundException;
 //import com.techelevator.model.Home;
 import com.techelevator.dao.BookDAO;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class BookController {
 
     @Autowired
     private BookDAO dao;
+    private UserDao userDao;
 
 
     @RequestMapping(path="/hello", method= RequestMethod.GET)
@@ -37,7 +39,7 @@ public class BookController {
     @RequestMapping(path = "/mybooks", method = RequestMethod.GET)
     public List<Book> retrieveAllBooks(Principal principal) {
 
-        return dao.retrieveAllBooks(principal);
+        return dao.retrieveAllBooks(userDao.findIdByUsername(principal.getName()));
     }
 
 
@@ -49,7 +51,7 @@ public class BookController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/mybooks", method = RequestMethod.POST)
     public Book addBook(@RequestBody Book book, Principal principal) {
-        return dao.addBook(book, principal);
+        return dao.addBook(book, userDao.findIdByUsername(principal.getName()));
     }
 
 
