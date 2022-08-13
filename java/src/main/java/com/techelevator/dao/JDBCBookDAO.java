@@ -29,7 +29,7 @@ public class JDBCBookDAO implements BookDAO{
         String sql = "SELECT * " +
                 "FROM inventory " +
                 //"JOIN users ON users.userid = inventory.userid";
-                "WHERE users.userid = ?;";
+                "WHERE user_id = ?;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);  //, principal.userId);
 

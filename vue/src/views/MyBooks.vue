@@ -1,52 +1,57 @@
 <template>
   <div class="container">
-    <h1 class="myBooks">My Books</h1>
-    <h2 class="welcome">Welcome jiahui8!</h2>
+    <div class="welcome-banner">
+      <h1 class="myBooks">My Books</h1>
+      <h2 class="welcome">Welcome {{ $store.state.user.username }}!</h2>
+    </div>
 
-
-    <book-list :books="books"/>
+    <book-list :books="books" />
   </div>
 </template>
 
 <script>
-
-import BookList from '../components/BookList.vue';
-import BookService from '../services/BookService.js';
+import BookList from "../components/BookList.vue";
+import BookService from "../services/BookService.js";
 
 export default {
-    name: 'myBooks',
-    data() {
-        return {
-            books: []
-        }
-    },
-    components: {
-        BookList,
-    },
-    methods: {
-        getBooks() {
-
-        }
-        
-    },
-    created() {
-        BookService.getMyBooks().then( (response) => {
-               this.books = response.data;
-               console.log(response.data);
-    })
-    }
-
-}
+  name: "myBooks",
+  data() {
+    return {
+      books: [],
+    };
+  },
+  components: {
+    BookList,
+  },
+  methods: {
+    getBooks() {},
+  },
+  created() {
+    BookService.getMyBooks().then((response) => {
+      this.books = response.data;
+      console.log(response.data);
+    });
+  },
+};
 </script>
 
 <style scoped>
-.myBooks {
-    margin: 30px;
-    text-align: left;
+.welcome-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45vw;
+  margin: 30px;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.884);
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-.welcome {
-    margin: 30px;
-    text-align: left;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 * {
@@ -67,7 +72,7 @@ body {
 }
 
 main {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 25px;
 
   background-image: linear-gradient(
@@ -108,4 +113,7 @@ main {
   border-radius: 16px 0px 16px 0px;
 }
 
+h2 h1 {
+  color: rgba(255, 255, 255, 0.884);
+}
 </style>

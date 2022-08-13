@@ -21,6 +21,7 @@ public class BookController {
 
     @Autowired
     private BookDAO dao;
+    @Autowired
     private UserDao userDao;
 
 
@@ -38,7 +39,6 @@ public class BookController {
 //    @PreAuthorize("isAuthenticated()") TODO uncomment this
     @RequestMapping(path = "/mybooks", method = RequestMethod.GET)
     public List<Book> retrieveAllBooks(Principal principal) {
-
         return dao.retrieveAllBooks(userDao.findIdByUsername(principal.getName()));
     }
 
