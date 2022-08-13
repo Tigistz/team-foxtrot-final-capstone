@@ -16,9 +16,21 @@
     <p>ISBN: {{ book.isbn }}</p>
 
     <div class="example-thing">
-      <button type="button" class="btn btn-outline-secondary" v-on:click.prevent="addBookToInventory()">
+
+      <button type="button" class="btn btn-outline-secondary" 
+      v-on:click.prevent="addBookToInventory()"
+      v-if="isSearchPage"
+      >
         Add to My Books
       </button>
+
+      <button type="button" class="btn btn-outline-secondary" 
+      v-on:click.prevent=""
+      v-if="!isSearchPage"
+      >
+        Remove From My Books
+      </button>
+
     </div>
   </div>
 </template>
@@ -53,6 +65,9 @@ export default {
     volumeInfo() {
       return this.book.volumeInfo;
     },
+    isSearchPage() {
+     return this.$route.name === 'search'
+  }
   },
 
   methods: {
@@ -64,6 +79,13 @@ export default {
         }
       });
     },
+    removeBookFromInventory(){
+      //bookservice.delete(this.book).then((response) => {
+      //  if(response.status === 200) {
+      //    this.$router.push("/mybooks");
+      //}  
+      //})
+    }
   },
 };
 </script>
@@ -114,6 +136,7 @@ export default {
   vertical-align: top;
   transition: height 1s;
   background-color: rgba(0, 0, 0, 0.5);
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .book-cover {

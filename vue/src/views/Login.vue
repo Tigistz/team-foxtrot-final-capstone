@@ -76,6 +76,9 @@ export default {
 </script>
 
 <style scoped>
+#login {
+  min-height: 100vh;
+}
 
 .form-control {
   width: 30vw;

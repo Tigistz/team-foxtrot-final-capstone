@@ -75,7 +75,7 @@
 <script>
 import BookList from "./BookList.vue";
 export default {
-  name: "app",
+  name: "app",  //this used to be app
   data() {
     return {
       options: [

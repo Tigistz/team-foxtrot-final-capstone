@@ -18,13 +18,13 @@
       </li>
       <li class="nav-item">
         <!-- <a class="nav-link" href="#">Mybooks anchor Link</a> -->
-        <router-link class="nav-link" v-bind:to="{ name: 'myBooks'}">My Books</router-link>
+        <router-link class="nav-link" v-bind:to="{ name: 'myBooks'}" v-if="$store.state.token != ''">My Books</router-link>
       </li>
             <li class="nav-item">
         <!-- <a class="nav-link" href="#">Mybooks anchor Link</a> -->
         <router-link class="nav-link" 
         v-bind:to="{ name: 'addBook'}"
-        v-if="$store.state.currentToken != ''"
+        v-if="$store.state.token != ''"
         >Add a Book</router-link>
       </li>
       <li class="nav-item">
