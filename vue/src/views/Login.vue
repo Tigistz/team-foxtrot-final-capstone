@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signing" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -31,8 +31,8 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <router-link class="need" :to="{ name: 'register' }">Need an account?</router-link>
+      <button type="submit" class="btn btn-danger">Sign in</button>
     </form>
   </div>
 </template>
@@ -77,16 +77,43 @@ export default {
 
 <style scoped>
 #login {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
 }
 
 .form-control {
-  width: 30vw;
+  width: 15vw;
+  margin-top: 1vh;
 }
 
 .form-signing {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 25vw;
+  height: 32vh;
+  border-radius:10px;
+}
+
+h1 {
+  color:rgba(255, 255, 255, 0.884);
+  margin-top: 4vh;
+  margin-bottom: 2vh;
+}
+
+.btn-danger, .btn-danger:hover {
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+}
+
+.need {
+  color: rgba(255, 255, 255, 0.884);
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 </style>
