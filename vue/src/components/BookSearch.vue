@@ -21,7 +21,7 @@
         buttons
       ></b-form-radio-group>
     </b-form-group>
-      <input type="submit" value="Search" class="button" />
+      <input type="submit" value="Search" class="btn btn-outline-secondary btn-lg" />
       <!-- <div>
         <label for="filter">Search By</label>&nbsp;
         <select name="filter" v-model="inputType">
@@ -227,5 +227,13 @@ main {
     -webkit-transform: rotate(360deg);
   }
 }
+
+.btn-outline-secondary{
+  background-color: rgba(0, 0, 0, 0.45);
+  margin-top: 1vh;
+  color: rgba(255, 255, 255, 0.884);
+}
+ 
+
 
 </style>
