@@ -23,15 +23,15 @@ public class JDBCBookDAO implements BookDAO{
     }
 
     @Override
-    public List<Book> retrieveAllBooks() {
+    public List<Book> retrieveAllBooks(int userId) {
         List<Book> books = new ArrayList<>();
 
         String sql = "SELECT * " +
-                "FROM inventory ";
+                "FROM inventory " +
                 //"JOIN users ON users.userid = inventory.userid";
-                //WHERE users.userid = ?;
+                "WHERE user_id = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);  //, principal.userId);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);  //, principal.userId);
 
         while(results.next()) {
 
@@ -42,12 +42,13 @@ public class JDBCBookDAO implements BookDAO{
     }
 
     @Override
-    public Book addBook(Book newBook){
-        String bookSQL = "INSERT INTO inventory (book_isbn, book_title, book_author, book_genre) " +  //TODO add the userID from principal
-                "VALUES(?,?,?,?) RETURNING book_id";
+    public Book addBook(Book newBook, int userId){
+        String bookSQL = "INSERT INTO inventory (book_isbn, user_id, book_title, book_author, book_genre) " +  //TODO add the userID from principal
+                "VALUES(?,?,?,?,?) RETURNING book_id";
         //Integer id =
                 jdbcTemplate.queryForObject(bookSQL, Integer.class,
                 newBook.getIsbn(),
+                userId,
                 newBook.getTitle(),
                 newBook.getAuthor(),
                 newBook.getGenre()
@@ -58,7 +59,7 @@ public class JDBCBookDAO implements BookDAO{
     }
 
     @Override
-    public void deleteBook(int bookToDeleteId) throws BookNotFoundException{  //website.com/mybooks/123
+    public void deleteBook(int bookToDeleteId, Principal principal) throws BookNotFoundException{  //website.com/mybooks/123
         //retrieve where the Book ID in the database matches the ones we're trying to delete
         String bookIdSQL = "SELECT book_id FROM inventory WHERE book_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(bookIdSQL, bookToDeleteId);

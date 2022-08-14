@@ -93,7 +93,7 @@ export default {
 <style scoped>
 
 .form-control {
-  width: 30vw;
+  width: 10vw;
   margin-top: 2vh;
 }
 

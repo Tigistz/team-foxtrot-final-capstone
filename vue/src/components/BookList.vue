@@ -29,5 +29,7 @@ export default {
 .book-list{
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin: 96px 0px 96px 0px;
 }
 </style>

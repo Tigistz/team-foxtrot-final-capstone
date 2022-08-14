@@ -1,5 +1,7 @@
 <template>
-  <book-form/>
+  <div class="container">
+    <book-form/>
+  </div>
 </template>
 
 <script>
@@ -12,5 +14,7 @@ export default {
 </script>
 
 <style>
-
+.container {
+  min-height: 100vh;
+}
 </style>
