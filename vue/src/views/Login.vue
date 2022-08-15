@@ -97,6 +97,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   width: 25vw;
   height: 32vh;
+  border-radius:10px;
 }
 
 h1 {
