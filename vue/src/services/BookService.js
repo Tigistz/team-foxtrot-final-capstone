@@ -16,6 +16,10 @@ export default {
 
    getMyBooks() {
        return axios.get('/mybooks')
+   },
+
+   createList(listName) {
+       return axios.post('/readinglists', listName)
    }
 
 }

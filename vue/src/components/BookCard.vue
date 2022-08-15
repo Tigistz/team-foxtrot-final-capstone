@@ -15,22 +15,33 @@
     </div>
     <p>ISBN: {{ book.isbn }}</p>
 
-    <div class="example-thing">
+    <b-alert class="alert" v-if="alertMessage" show dismissible
+      >Already Exists</b-alert
+    >
 
-      <button type="button" class="btn btn-outline-secondary" 
-      v-on:click.prevent="addBookToInventory()"
-      v-if="isSearchPage"
+    <div class="example-thing">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        v-on:click.prevent="addBookToInventory()"
+        v-if="isSearchPage"
       >
         Add to My Books
       </button>
 
-      <button type="button" class="btn btn-outline-secondary" 
-      v-on:click.prevent=""
-      v-if="!isSearchPage"
+
+      <!-- select: options are remove book, v-for(number of lists)add to listX  -->
+
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        v-on:click.prevent=""
+        v-if="!isSearchPage"
       >
-        Remove From My Books
+        Remove Book
       </button>
 
+      <!-- <iframe src="https://archive.org/embed/harrypotterjasal0000rowl" width="560" height="384" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe> -->
     </div>
   </div>
 </template>
@@ -50,8 +61,12 @@ export default {
         title: this.book.title,
         author: this.book.author,
         genre: this.book.subject,
-        isbn: this.book.isbn
+        isbn: this.book.isbn,
       },
+
+      listName: "",
+
+      alertMessage: false,
     };
   },
   props: {
@@ -66,26 +81,43 @@ export default {
       return this.book.volumeInfo;
     },
     isSearchPage() {
-     return this.$route.name === 'search'
-  }
+      return this.$route.name === "search";
+    },
   },
 
   methods: {
     getBooks() {},
     addBookToInventory() {
-      BookService.addBook(this.newBook).then((response) => {
+      BookService.addBook(this.newBook)
+        .then((response) => {
+          if (response.status === 201) {
+            this.$router.push("/mybooks");
+          }
+        })
+        .catch((error) => {
+          const response = error.response;
+          if (response.status === 418) {
+            //alert("This book already exists in your reading list!");
+            this.alertMessage = true;
+          }
+        });
+    },
+
+    createList() {
+      BookService.createList(this.listName).then((response) => {
         if (response.status === 201) {
           this.$router.push("/mybooks");
         }
       });
     },
-    removeBookFromInventory(){
+
+    removeBookFromInventory() {
       //bookservice.delete(this.book).then((response) => {
       //  if(response.status === 200) {
       //    this.$router.push("/mybooks");
-      //}  
+      //}
       //})
-    }
+    },
   },
 };
 </script>
@@ -139,6 +171,9 @@ export default {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+.alert {
+  /* styling for alert here */
+}
 .book-cover {
   width: 100%;
   height: auto;
@@ -151,7 +186,6 @@ export default {
   text-align: center;
 }
 
-
 p {
   color: rgba(255, 255, 255, 0.884);
 }
@@ -159,5 +193,4 @@ p {
 h5 {
   color: rgba(255, 255, 255, 0.884);
 }
-
 </style>

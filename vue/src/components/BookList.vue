@@ -7,13 +7,15 @@
 <script>
 import BookCard from "./BookCard";
 
+
+
 export default {
   //comment out data section later and uncomment props section, delete dummy data
-  // data(){
-  //     return{
-  //         books: []
-  //     }
-  // },  
+  data(){
+      return{
+        
+      }
+  },  
   props: {
     books: {
       type: Array
@@ -21,7 +23,8 @@ export default {
   },
   components: {
     BookCard
-  }
+  },
+  
 };
 </script>
 

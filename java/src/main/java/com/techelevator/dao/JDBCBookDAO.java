@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Book;
+import com.techelevator.model.BookAlreadyExistsException;
 import com.techelevator.model.BookNotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -27,9 +28,10 @@ public class JDBCBookDAO implements BookDAO{
         List<Book> books = new ArrayList<>();
 
         String sql = "SELECT * " +
-                "FROM inventory " +
-                //"JOIN users ON users.userid = inventory.userid";
-                "WHERE user_id = ?;";
+                "FROM master_table " +
+                "JOIN inventory ON inventory.book_id = master_table.book_id " +
+                "JOIN users ON users.user_id = master_table.user_id " +
+                "WHERE master_table.user_id = ?;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);  //, principal.userId);
 
@@ -41,22 +43,69 @@ public class JDBCBookDAO implements BookDAO{
         return books;
     }
 
+    /** Create A List */
+
     @Override
-    public Book addBook(Book newBook, int userId){
-        String bookSQL = "INSERT INTO inventory (book_isbn, user_id, book_title, book_author, book_genre) " +  //TODO add the userID from principal
-                "VALUES(?,?,?,?,?) RETURNING book_id";
-        //Integer id =
-                jdbcTemplate.queryForObject(bookSQL, Integer.class,
+    public int createList(String listName) {
+
+        String sql = "INSERT INTO reading_list (list_name) VALUES (?) RETURNING list_id; ";
+
+        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, listName);
+
+        return id;
+    }
+
+    /** Takes in the book to add to the user's inventory, checks if it already exists in the database
+     *  If it already exists, create the
+     *
+     *
+     * @param newBook the book to add to the inventory
+     * @param userId the user currently logged in
+     */
+
+    @Override
+    public void addBook(Book newBook, int userId) throws BookAlreadyExistsException{
+        Integer id = null;
+        int tempListId = 1; //todo create the real list id method
+
+        String bookCheckSQL= "SELECT * FROM inventory WHERE book_isbn = ? ;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(bookCheckSQL, newBook.getIsbn());
+        if(results.next()){
+            id = results.getInt("book_id");
+
+
+            if(checkForMasterList(id, userId,tempListId)) {
+                throw new BookAlreadyExistsException();
+            }
+
+        }
+        else {
+            String bookSQL = "INSERT INTO inventory (book_isbn, book_title, book_author, book_genre) " +
+                    "VALUES(?,?,?,?) RETURNING book_id;";
+            id = jdbcTemplate.queryForObject(bookSQL, Integer.class,
                 newBook.getIsbn(),
-                userId,
                 newBook.getTitle(),
                 newBook.getAuthor(),
                 newBook.getGenre()
-                );
-        //newBook.setBookId(id);
-        return newBook;
+            );
+        }
+
+        String masterSQL = "INSERT INTO master_table (book_id, user_id, list_id) " +
+                "VALUES (?,?,?);";
+        jdbcTemplate.update(masterSQL,
+                id,
+                userId,
+                tempListId);
 
     }
+
+    /** Add a book to a custom reading list */
+
+    //need ability for user to create a new list. (INSERT)
+    //once they have the new list - need ability to name this list (INSERT into reading list table)
+    //need ability to retrieve whichever list they select
+    //need a (PUT) to update the list_id a book
+
 
     @Override
     public void deleteBook(int bookToDeleteId, Principal principal) throws BookNotFoundException{  //website.com/mybooks/123
@@ -78,6 +127,18 @@ public class JDBCBookDAO implements BookDAO{
     }
 
 
+    private boolean checkForMasterList(int bookId, int userId, int listId){
+
+        String sql = "SELECT * " +
+                "FROM master_table " +
+                "WHERE book_id = ? AND user_id = ? AND list_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, bookId, userId, listId);  //, principal.userId);
+
+        return results.next();
+    }
+
+
 
     private Book mapRowToBook(SqlRowSet results) {
         Book book = new Book();
@@ -87,7 +148,7 @@ public class JDBCBookDAO implements BookDAO{
         book.setBookId(results.getInt("book_id"));
         book.setIsbn(results.getString("book_isbn"));
         book.setGenre(results.getString("book_genre"));
-        book.setUserId(results.getInt("user_id"));
+        //book.setUserId(results.getInt("user_id"));
 
         return book;
     }
