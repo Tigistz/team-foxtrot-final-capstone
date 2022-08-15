@@ -1,9 +1,19 @@
 <template>
    <div>
 
+
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <!-- <a class="navbar-brand" href="#">Team Foxtrot Books</a> -->
-  <router-link class="navbar-brand" v-bind:to="{ name: 'home'}">Team Foxtrot Books</router-link>
+
+ 
+      <img id="fox-logo" src="../assets/15.png"/>
+      
+    
+
+  <router-link class="navbar-brand" v-bind:to="{ name: 'home'}">Foxtrot Book Library</router-link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -61,12 +71,21 @@ export default {
   margin-left: 2vw;
 }
 .navbar {
+  color:#23272B;
   display: flex;
   justify-content: space-between;
 }
 .navbar-expand-lg .navbar-collapse {
+  background:#23272B !important;
   justify-content: flex-end;
   margin-right: 2vw;
 }
+
+#fox-logo {
+  width:70px;
+  height:auto;
+  border-radius: 40%;
+}
+ 
  
 </style>
