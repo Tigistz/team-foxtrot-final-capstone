@@ -6,6 +6,24 @@
     </div>
 
     <book-list :books="books" />
+
+    <div>
+      <form class="list-form" v-on:submit.prevent="createList()">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="List Name... (required)"
+            required="true;"
+            v-model="listName.name"
+          />
+        </div>
+        <button class="submit-button" v-on:click.prevent="createList()">
+          Create List
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -18,6 +36,9 @@ export default {
   data() {
     return {
       books: [],
+      listName: {
+        name: "",
+      },
     };
   },
   components: {
@@ -25,6 +46,15 @@ export default {
   },
   methods: {
     getBooks() {},
+
+    createList() {
+      BookService.createList(this.listName.name).then((response) => {
+        if (response.status === 201) {
+          // this.$router.push("/mybooks");
+          alert("yo mamma");
+        }
+      });
+    },
   },
   created() {
     BookService.getMyBooks().then((response) => {
