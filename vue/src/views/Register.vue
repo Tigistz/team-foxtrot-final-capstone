@@ -112,6 +112,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   width: 25vw;
   height: 35vh;
+  border-radius:10px;
   
 }
 

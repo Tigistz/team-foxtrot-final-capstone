@@ -82,6 +82,7 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  flex-shrink: 0;
 }
 
 .form-control {
@@ -96,6 +97,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   width: 25vw;
   height: 32vh;
+  border-radius:10px;
 }
 
 h1 {
