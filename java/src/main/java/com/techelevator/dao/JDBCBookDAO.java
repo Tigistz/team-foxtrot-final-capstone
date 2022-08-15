@@ -41,6 +41,26 @@ public class JDBCBookDAO implements BookDAO{
         return books;
     }
 
+//    @Override
+//    public List<Book> retrieveCustomList(int userId, int listId) {
+//        List<Book> books = new ArrayList<>();
+//
+//        String sql = "SELECT * " +
+//                "FROM inventory " +
+//                "LEFT JOIN lists ON lists.user_id = inventory.user_id" +
+//                "WHERE user_id = ?;";
+//
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, listId);  //, principal.userId);
+//
+//        while(results.next()) {
+//
+//            Book book = mapRowToBook(results);
+//            books.add(book);
+//        }
+//        return books;
+//
+//    }
+
     @Override
     public Book addBook(Book newBook, int userId){
         String bookSQL = "INSERT INTO inventory (book_isbn, user_id, book_title, book_author, book_genre) " +  //TODO add the userID from principal

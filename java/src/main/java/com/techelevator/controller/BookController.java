@@ -43,6 +43,16 @@ public class BookController {
         return dao.retrieveAllBooks(userDao.findIdByUsername(principal.getName()));
     }
 
+    /**
+     *
+     * @param principal
+     * @return List<Book> - retrieve one of the user's custom reading lists
+     */
+//    @RequestMapping(path = "/mybooks", method = RequestMethod.GET)
+//    public List<Book> retrieveCustomList(Principal principal, int listId) {
+//        return dao.retrieveCustomList(userDao.findIdByUsername(principal.getName()), listId);
+//    }
+
 
     /**
      * Add a new book to reading list, same page @/mybooks
