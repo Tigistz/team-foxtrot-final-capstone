@@ -37,7 +37,7 @@ public class BookController {
      *
      * @return List<Book>  -  a list of all books in the user's reading list
      */
-//    @PreAuthorize("isAuthenticated()") TODO uncomment this
+
     @RequestMapping(path = "/mybooks", method = RequestMethod.GET)
     public List<Book> retrieveAllBooks(Principal principal) {
         return dao.retrieveAllBooks(userDao.findIdByUsername(principal.getName()));
@@ -51,11 +51,22 @@ public class BookController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/mybooks", method = RequestMethod.POST)
-    public Book addBook(@RequestBody Book book, Principal principal) {
-        return dao.addBook(book, userDao.findIdByUsername(principal.getName()));
+    public void addBook(@RequestBody Book book, Principal principal) {
+        dao.addBook(book, userDao.findIdByUsername(principal.getName()));
     }
 
 
+
+    /**
+     * Add a new book to reading list, same page @/mybooks
+     *
+     * @return 201 Created if successful
+     */
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/mybooks", method = RequestMethod.POST)
+    public void createList(@RequestBody Book book, Principal principal) {
+        dao.addBook(book, userDao.findIdByUsername(principal.getName()));
+    }
 
 //    @RequestMapping(path = "/mybooks/{bookId}", method = RequestMethod.GET)
 //    public Book retrieveBookByID(@PathVariable String bookId) throws BookNotFoundException {
