@@ -3,6 +3,7 @@ package com.techelevator.controller;
 //import com.techelevator.model.HomeNotFoundException;
 //import com.techelevator.model.Home;
 import com.techelevator.dao.BookDAO;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,16 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+
 @RestController
+@PreAuthorize("isAuthenticated()")
 @CrossOrigin
 public class BookController {
 
     @Autowired
     private BookDAO dao;
+    @Autowired
+    private UserDao userDao;
 
 
     @RequestMapping(path="/hello", method= RequestMethod.GET)
@@ -34,9 +39,8 @@ public class BookController {
      */
 //    @PreAuthorize("isAuthenticated()") TODO uncomment this
     @RequestMapping(path = "/mybooks", method = RequestMethod.GET)
-    public List<Book> retrieveAllBooks() {
-
-        return dao.retrieveAllBooks();
+    public List<Book> retrieveAllBooks(Principal principal) {
+        return dao.retrieveAllBooks(userDao.findIdByUsername(principal.getName()));
     }
 
 
@@ -47,8 +51,8 @@ public class BookController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/mybooks", method = RequestMethod.POST)
-    public Book addBook(@RequestBody Book book) {
-        return dao.addBook(book);
+    public Book addBook(@RequestBody Book book, Principal principal) {
+        return dao.addBook(book, userDao.findIdByUsername(principal.getName()));
     }
 
 
@@ -68,8 +72,8 @@ public class BookController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/mybooks/{bookId}", method = RequestMethod.DELETE)
-    public void deleteBook(@PathVariable int bookId) throws BookNotFoundException {
-        dao.deleteBook(bookId);
+    public void deleteBook(@PathVariable int bookId, Principal principal) throws BookNotFoundException {
+        dao.deleteBook(bookId, principal);
     }
 
 

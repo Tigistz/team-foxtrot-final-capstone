@@ -18,13 +18,13 @@
       </li>
       <li class="nav-item">
         <!-- <a class="nav-link" href="#">Mybooks anchor Link</a> -->
-        <router-link class="nav-link" v-bind:to="{ name: 'myBooks'}">My Books</router-link>
+        <router-link class="nav-link" v-bind:to="{ name: 'myBooks'}" v-if="$store.state.token != ''">My Books</router-link>
       </li>
             <li class="nav-item">
         <!-- <a class="nav-link" href="#">Mybooks anchor Link</a> -->
         <router-link class="nav-link" 
         v-bind:to="{ name: 'addBook'}"
-        v-if="$store.state.currentToken != ''"
+        v-if="$store.state.token != ''"
         >Add a Book</router-link>
       </li>
       <li class="nav-item">
@@ -58,6 +58,7 @@ export default {
 <style scoped>
 
 .navbar-brand {
+  
   margin-left: 2vw;
 }
 .navbar {
@@ -65,6 +66,7 @@ export default {
   justify-content: space-between;
 }
 .navbar-expand-lg .navbar-collapse {
+  
   justify-content: flex-end;
   margin-right: 2vw;
 }

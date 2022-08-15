@@ -32,9 +32,9 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
+      <router-link class="have" :to="{ name: 'login' }">Have an account?</router-link>
+      <button class="btn btn-danger" type="submit">
+        Register
       </button>
     </form>
   </div>
@@ -92,18 +92,45 @@ export default {
 
 <style scoped>
 
+#register {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .form-control {
-  width: 30vw;
-  margin-top: 2vh;
+  width: 15vw;
+  margin-top: 1vh;
 }
 
 .form-register {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 25vw;
+  height: 35vh;
+  border-radius:10px;
+  
 }
 
-.h3 {
-  margin-top: 2vh;
+h1 {
+  color:rgba(255, 255, 255, 0.884);
+  margin-top: 3vh;
+  margin-bottom: 1vh;
+}
+
+.have {
+  color: rgba(255, 255, 255, 0.884);
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
+.btn-danger, .btn-danger:hover {
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
 }
 </style>

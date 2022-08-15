@@ -11,7 +11,6 @@
         
       </div>
 
-
     <b-form-group v-slot="{ ariaDescribedby }">
       <b-form-radio-group
         id="btn-radios-1"
@@ -22,10 +21,7 @@
         buttons
       ></b-form-radio-group>
     </b-form-group>
-
-
-      <input type="submit" value="Search" class="button" />
-
+      <input type="submit" value="Search" class="btn btn-outline-secondary btn-lg" />
       <!-- <div>
         <label for="filter">Search By</label>&nbsp;
         <select name="filter" v-model="inputType">
@@ -36,9 +32,6 @@
         </select>
       </div> -->
     </form>
-
-      <!-- <input id="two" type="radio" value="two" v-model="searchType"/> -->
-
 
       <!-- Old Radio Buttons vvvvvvv -->
       <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -72,10 +65,9 @@
       
       </div> -->
 
-
-
-    <div>
-      <book-list :books="books" />
+    <div class="content">
+      <book-list v-if="loadState == 'success'" :books="books" />
+      <div class="loading" v-if="loadState == 'loading'"></div>
     </div>
   </div>
 </template>
@@ -83,7 +75,7 @@
 <script>
 import BookList from "./BookList.vue";
 export default {
-  name: "app",
+  name: "app",  //this used to be app
   data() {
     return {
       options: [
@@ -98,10 +90,11 @@ export default {
       book: {
         title: "",
         author: "",
-        imageLinks: "",
+        isbn: "",
+        subject: ""
       },
-      books: [],
-      googleApiBooks: [],
+      loadState:'',
+      books: []
     };
   },
   components: {
@@ -109,19 +102,30 @@ export default {
   },
   methods: {
     search() {
+      this.loadState = 'loading'
       fetch(
         `http://openlibrary.org/search.json?${this.searchType}=${this.query}&limit=15`
       ).then((response) => {
         response.json().then((data) => {
           console.log(data);
-          this.books = data.docs;
+
+          this.books = [];
+          data.docs.forEach(item =>{
+            this.book = {};
+            this.book.title = item.title;
+            this.book.author = item.author_name[0];
+            this.book.isbn = item.isbn[1];
+            // this.book.subject = item.subject[0];
+            this.books.push(this.book);
+            
+          })
+          this.loadState = 'success'
+          //this.books = data.docs; this is the old method
         });
       });
     },
   },
-  //https://www.googleapis.com/books/v1/volumes?q=${this.inputType}${this.query}&orderBy=relevance&maxResults=9&key=AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg
-  //          console.log(data);
-  // this.books = data.items;
+
 };
 </script>
 
@@ -202,30 +206,34 @@ main {
   text-align: center;
 }
 
-.weather-box {
-  text-align: center;
+/* Loader: shamelessly taken from https://codepen.io/veganben/pen/GAgsH */
+.loading {
+  height: 0;
+  width: 0;
+  padding: 15px;
+  border: 9px solid #ccc;
+  border-right-color: #2c3e50;
+  border-radius: 28px;
+  -webkit-animation: rotate 1s infinite linear;
+  position: absolute;
+  left: 49%;
+  top: 50%;
 }
 
-.weather-box .temp {
-  display: inline-block;
-  padding: 10px 25px;
-  color: #fff;
-  font-size: 102px;
-  font-weight: 900;
-
-  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.25);
-  border-radius: 16px;
-  margin: 30px 0px;
-
-  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+@-webkit-keyframes rotate {
+  /* 100% keyframe for  clockwise. 
+     use 0% instead for anticlockwise */
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
-.weather-box .weather {
-  color: #fff;
-  font-size: 48px;
-  font-weight: 700;
-  font-style: italic;
-  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+.btn-outline-secondary{
+  background-color: rgba(0, 0, 0, 0.45);
+  margin-top: 1vh;
+  color: rgba(255, 255, 255, 0.884);
 }
+ 
+
+
 </style>
