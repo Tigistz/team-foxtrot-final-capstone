@@ -82,6 +82,7 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  flex-shrink: 0;
 }
 
 .form-control {

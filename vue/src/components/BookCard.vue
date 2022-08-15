@@ -15,7 +15,13 @@
     </div>
     <p>ISBN: {{ book.isbn }}</p>
 
+
+    <b-alert class="alert" v-if="alertMessage" show dismissible>Already Exists</b-alert>
+
+
     <div class="example-thing">
+
+      
 
       <button type="button" class="btn btn-outline-secondary" 
       v-on:click.prevent="addBookToInventory()"
@@ -24,11 +30,14 @@
         Add to My Books
       </button>
 
+
+
+        <!-- select: options are remove book, v-for(number of lists)add to listX  -->
       <button type="button" class="btn btn-outline-secondary" 
       v-on:click.prevent=""
       v-if="!isSearchPage"
       >
-        Remove From My Books
+        Remove Book
       </button>
 
     </div>
@@ -52,6 +61,7 @@ export default {
         genre: this.book.subject,
         isbn: this.book.isbn
       },
+      alertMessage: false,
     };
   },
   props: {
@@ -73,11 +83,20 @@ export default {
   methods: {
     getBooks() {},
     addBookToInventory() {
-      BookService.addBook(this.newBook).then((response) => {
+      BookService
+      .addBook(this.newBook)
+      .then((response) => {
         if (response.status === 201) {
           this.$router.push("/mybooks");
         }
-      });
+      })
+      .catch(error => {
+          const response = error.response;
+          if (response.status === 418) {
+            //alert("This book already exists in your reading list!");
+            this.alertMessage = true
+          }
+        });
     },
     removeBookFromInventory(){
       //bookservice.delete(this.book).then((response) => {
@@ -139,6 +158,9 @@ export default {
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
+.alert{
+  /* styling for alert here */
+}
 .book-cover {
   width: 100%;
   height: auto;
