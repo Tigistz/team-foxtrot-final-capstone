@@ -49,8 +49,8 @@
         </select>
       </div> -->
 
-      <div>
-        <b-dropdown text="Add to List" variant="light" class="m-2">
+      <div v-if="!isSearchPage">
+        <b-dropdown text="Add to List" variant="transparent" id="selectAdd" class="m-2">
           <b-dropdown-item
             v-for="list in userReadingLists"
             value="list.id"
@@ -196,7 +196,8 @@ export default {
   padding: 10px 10px 0 10px;
   vertical-align: top;
   transition: height 1s;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  /* border: 1px solid black; */
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
@@ -221,5 +222,10 @@ p {
 
 h5 {
   color: rgba(255, 255, 255, 0.884);
+}
+
+#selectAdd{
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgba(255, 255, 255, 0.884);
 }
 </style>
