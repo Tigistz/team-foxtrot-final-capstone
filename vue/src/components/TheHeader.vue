@@ -9,7 +9,7 @@
   <!-- <a class="navbar-brand" href="#">Team Foxtrot Books</a> -->
 
  
-      <img id="fox-logo" src="../assets/15.png"/>
+      <img id="fox-logo" src="../assets/fox-logo-2nd.png"/>
       
     
 
@@ -76,15 +76,18 @@ export default {
   justify-content: space-between;
 }
 .navbar-expand-lg .navbar-collapse {
-  background:#23272B !important;
+  background:#23272B;
   justify-content: flex-end;
   margin-right: 2vw;
 }
 
 #fox-logo {
-  width:70px;
+  
+  width:100px;
   height:auto;
-  border-radius: 40%;
+  
+
+  
 }
  
  
