@@ -1,6 +1,6 @@
 <template>
   <div class="book-list">
-    <BookCard v-for="book in books" :key="book.id" :book="book"/>
+    <BookCard v-for="book in books" :key="book.id" :book="book" :userReadingLists="userReadingLists"/>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ export default {
     books: {
       type: Array
     },
+    userReadingLists: {
+      type: Array
+    }
   },
   components: {
     BookCard

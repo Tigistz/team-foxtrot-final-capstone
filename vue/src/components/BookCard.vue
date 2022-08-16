@@ -29,17 +29,44 @@
         Add to My Books
       </button>
 
-
       <!-- select: options are remove book, v-for(number of lists)add to listX  -->
 
-      <button
+      <!-- <button
         type="button"
         class="btn btn-outline-secondary"
         v-on:click.prevent=""
         v-if="!isSearchPage"
       >
         Remove Book
-      </button>
+      </button> -->
+
+      <!-- <div>   PLEASE DON'T BREAK MEEEE
+        <label for="add-to-list">Add to List</label>
+        <select name="add-to-list" v-model="listName">
+          <option value="" v-for="list in userReadingLists" :key="list.id">
+            {{ list.listName }}
+          </option>
+        </select>
+      </div> -->
+
+      <div>
+        <b-dropdown text="Add to List" variant="light" class="m-2">
+          <b-dropdown-item
+            v-for="list in userReadingLists"
+            value="list.id"
+            :key="list.id"
+          >
+            {{ list.listName }}</b-dropdown-item
+          >
+        </b-dropdown>
+      </div>
+      <!-- 
+        <label for="add-to-list">Add to List</label>
+        <select name="add-to-list" v-model="listName">
+          <option value="" v-for="list in userReadingLists" :key="list.id">
+            {{ list.listName }}
+          </option>
+        </select> -->
 
       <!-- <iframe src="https://archive.org/embed/harrypotterjasal0000rowl" width="560" height="384" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe> -->
     </div>
@@ -55,9 +82,6 @@ export default {
   data() {
     return {
       newBook: {
-        // title: this.book.volumeInfo.title,
-        // author: this.book.volumeInfo.authors[0],
-        // genre: this.book.volumeInfo.categories[0],
         title: this.book.title,
         author: this.book.author,
         genre: this.book.subject,
@@ -67,12 +91,17 @@ export default {
       listName: "",
 
       alertMessage: false,
+
+      // userReadingLists: [], //this is the group of user's reading lists
     };
   },
   props: {
     book: {
       type: Object,
       required: true,
+    },
+    userReadingLists: {
+      type: Array,
     },
   },
 

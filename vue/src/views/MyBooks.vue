@@ -3,9 +3,21 @@
     <div class="welcome-banner">
       <h1 class="myBooks">My Books</h1>
       <h2 class="welcome">Welcome {{ $store.state.user.username }}!</h2>
+
+      <div>
+        <b-button-group>
+          <b-button
+            variant="dark"
+            v-for="list in userReadingLists"
+            :key="list.listId"
+            v-on:click="displaySelectedReadingList()"
+            >{{ list.listName }}</b-button
+          >
+        </b-button-group>
+      </div>
     </div>
 
-    <book-list :books="books" />
+    <book-list :books="books" :userReadingLists="userReadingLists" />
 
     <div>
       <form class="list-form" v-on:submit.prevent="createList()">
@@ -16,7 +28,7 @@
             id="exampleFormControlInput1"
             placeholder="List Name... (required)"
             required="true;"
-            v-model="listName.name"
+            v-model="list.listName"
           />
         </div>
         <button class="submit-button" v-on:click.prevent="createList()">
@@ -35,10 +47,12 @@ export default {
   name: "myBooks",
   data() {
     return {
-      books: [],
-      listName: {
-        name: "",
+      books: [], //this is the book objects we feed into the bookcards
+      list: {  //this is the create new list name
+        listId: "",
+        listName: "",
       },
+      userReadingLists: [], //this is the group of user's reading lists
     };
   },
   components: {
@@ -48,19 +62,30 @@ export default {
     getBooks() {},
 
     createList() {
-      BookService.createList(this.listName.name).then((response) => {
+      BookService.createList(this.list).then((response) => {
         if (response.status === 201) {
           // this.$router.push("/mybooks");
-          alert("yo mamma");
+          alert("Success!");
+          this.$router.go();
         }
       });
     },
+    displaySelectedReadingList(){
+      BookService.retrieveSelectedList(this.list.listId)
+      .then((response) => {
+        this.books = response.data;
+      });
+    }
   },
   created() {
     BookService.getMyBooks().then((response) => {
       this.books = response.data;
       console.log(response.data);
-    });
+    }),
+      BookService.retrieveLists().then((response) => {
+        this.userReadingLists = response.data;
+        console.log(response.data);
+      });
   },
 };
 </script>

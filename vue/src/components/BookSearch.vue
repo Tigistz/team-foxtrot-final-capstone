@@ -33,37 +33,6 @@
       </div> -->
     </form>
 
-      <!-- Old Radio Buttons vvvvvvv -->
-      <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-secondary active">
-          <input
-            type="radio"
-            name="options"
-            id="title"
-            autocomplete="off"
-            
-            value="title"
-            v-model="searchType"
-            checked
-          />
-          Title
-        </label>
-        <label class="btn btn-secondary">
-          <input type="radio" name="options" id="author" autocomplete="off" 
-            v-bind:value="author"
-            v-model="searchType"
-          />
-          Author
-        </label>
-        <label class="btn btn-secondary">
-          <input type="radio" name="options" id="subject" autocomplete="off" 
-            value="subject"
-            v-model="searchType"
-            />
-          Subject
-        </label>
-      
-      </div> -->
 
     <div class="content">
       <book-list v-if="loadState == 'success'" :books="books" />
