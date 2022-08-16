@@ -1,6 +1,6 @@
 <template>
   <div>
-      <p>&#169; Copyright JG Homes - All Rights Reserved (Ok, not really!)</p>
+      <p>&#169; Copyright Team Foxtrot - All Rights Reserved </p>
   </div>
 </template>
 
