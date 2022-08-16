@@ -73,10 +73,10 @@ public class BookController {
      *
      * @return 201 Created if successful
      */
-//    @RequestMapping(path = "/readinglists", method = RequestMethod.GET)
-//    public ReadingList retrieveList(@RequestBody ReadingList listName) {
-//        dao.createList(listName);
-//    }
+    @RequestMapping(path = "/readinglists", method = RequestMethod.GET)
+    public List<ReadingList> retrieveReadingLists(Principal principal) {
+        return dao.retrieveReadingLists(principal);
+    }
 
 //    @RequestMapping(path = "/mybooks/{bookId}", method = RequestMethod.GET)
 //    public Book retrieveBookByID(@PathVariable String bookId) throws BookNotFoundException {
@@ -89,8 +89,8 @@ public class BookController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/readinglists", method = RequestMethod.POST)
-    public void createList(@RequestBody ReadingList listName) {
-        dao.createList(listName);
+    public void createList(@RequestBody ReadingList listName, Principal principal) {
+        dao.createList(principal,listName);
     }
 
 

@@ -5,7 +5,7 @@
       <h2 class="welcome">Welcome {{ $store.state.user.username }}!</h2>
     </div>
 
-    <book-list :books="books" />
+    <book-list :books="books" :userReadingLists="userReadingLists"/>
 
     <div>
       <form class="list-form" v-on:submit.prevent="createList()">
@@ -36,9 +36,10 @@ export default {
   data() {
     return {
       books: [],
-      list: {
+      list: { //this is the input list name
         listName: ''
-      }
+      },
+      userReadingLists: [] //this is the group of user's reading lists
     };
   },
   components: {
@@ -51,7 +52,8 @@ export default {
       BookService.createList(this.list).then((response) => {
         if (response.status === 201) {
           // this.$router.push("/mybooks");
-          alert("yo mamma");
+          alert("Success!");
+          this.$router.go()
         }
       });
     },
@@ -59,6 +61,11 @@ export default {
   created() {
     BookService.getMyBooks().then((response) => {
       this.books = response.data;
+      console.log(response.data);
+    }),
+  
+    BookService.retrieveLists().then((response) => {
+      this.userReadingLists = response.data;
       console.log(response.data);
     });
   },

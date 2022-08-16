@@ -20,6 +20,10 @@ export default {
 
    createList(listName) {
        return axios.post('/readinglists', listName)
+   },
+
+   retrieveLists(){
+       return axios.get('/readinglists')
    }
 
 }

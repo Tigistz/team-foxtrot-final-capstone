@@ -47,14 +47,43 @@ public class JDBCBookDAO implements BookDAO{
     /** Create A List */
 
     @Override
-    public int createList(ReadingList listName) {
+    public int createList(Principal principal, ReadingList listName) {
+
+        String addListName = principal.getName() + "|" + listName.getListName();
 
         String sql = "INSERT INTO reading_list (list_name) " +
                 "VALUES(?) RETURNING list_id;";
 
-        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, listName.getListName());
+        return jdbcTemplate.queryForObject(sql, Integer.class, addListName);
 
-        return id;
+
+    }
+
+    @Override
+    public List<ReadingList> retrieveReadingLists(Principal principal) {
+        List<ReadingList> readingList = new ArrayList<>();
+
+        String listName;
+        int usernameLength = principal.getName().length() + 1;
+
+        String sql = "SELECT * FROM reading_list " +
+                "WHERE list_name ILIKE ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName() + '%');
+        while(results.next()) {
+            ReadingList list = new ReadingList();
+
+            list.setListId(results.getString("list_id"));
+
+            listName = results.getString("list_name").substring(usernameLength);
+
+
+            list.setListName(listName);
+            readingList.add(list);
+        }
+
+
+        return readingList;
     }
 
     /** Takes in the book to add to the user's inventory, checks if it already exists in the database

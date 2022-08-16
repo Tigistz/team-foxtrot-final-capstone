@@ -13,7 +13,8 @@ public interface BookDAO {
     void addBook(Book newBook, int userId) throws BookAlreadyExistsException;
     void deleteBook(int bookId, Principal principal) throws BookNotFoundException;
     List<Book> retrieveAllBooks(int userId); //TODO include the principal user
-    int createList(ReadingList listName);
+    int createList(Principal principal,ReadingList listName);
+    List<ReadingList> retrieveReadingLists(Principal principal);
     //Maybe we retrieve by ID but never specified by our product owner
 
 }
