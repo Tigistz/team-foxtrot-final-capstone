@@ -24,6 +24,10 @@ export default {
 
    retrieveLists(){
        return axios.get('/readinglists')
+   },
+
+   retrieveSelectedList(id){
+       return axios.get(`/readinglists/${id}`);
    }
 
 }

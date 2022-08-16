@@ -3,9 +3,21 @@
     <div class="welcome-banner">
       <h1 class="myBooks">My Books</h1>
       <h2 class="welcome">Welcome {{ $store.state.user.username }}!</h2>
+
+      <div>
+        <b-button-group>
+          <b-button
+            variant="dark"
+            v-for="list in userReadingLists"
+            :key="list.listId"
+            v-on:click="displaySelectedReadingList()"
+            >{{ list.listName }}</b-button
+          >
+        </b-button-group>
+      </div>
     </div>
 
-    <book-list :books="books" :userReadingLists="userReadingLists"/>
+    <book-list :books="books" :userReadingLists="userReadingLists" />
 
     <div>
       <form class="list-form" v-on:submit.prevent="createList()">
@@ -35,11 +47,12 @@ export default {
   name: "myBooks",
   data() {
     return {
-      books: [],
-      list: { //this is the input list name
-        listName: ''
+      books: [], //this is the book objects we feed into the bookcards
+      list: {  //this is the create new list name
+        listId: "",
+        listName: "",
       },
-      userReadingLists: [] //this is the group of user's reading lists
+      userReadingLists: [], //this is the group of user's reading lists
     };
   },
   components: {
@@ -53,21 +66,26 @@ export default {
         if (response.status === 201) {
           // this.$router.push("/mybooks");
           alert("Success!");
-          this.$router.go()
+          this.$router.go();
         }
       });
     },
+    displaySelectedReadingList(){
+      BookService.retrieveSelectedList(this.list.listId)
+      .then((response) => {
+        this.books = response.data;
+      });
+    }
   },
   created() {
     BookService.getMyBooks().then((response) => {
       this.books = response.data;
       console.log(response.data);
     }),
-  
-    BookService.retrieveLists().then((response) => {
-      this.userReadingLists = response.data;
-      console.log(response.data);
-    });
+      BookService.retrieveLists().then((response) => {
+        this.userReadingLists = response.data;
+        console.log(response.data);
+      });
   },
 };
 </script>

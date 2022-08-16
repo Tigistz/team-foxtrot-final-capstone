@@ -52,8 +52,8 @@
       <div>
         <b-dropdown text="Add to List" variant="light" class="m-2">
           <b-dropdown-item
-            value=""
             v-for="list in userReadingLists"
+            value="list.id"
             :key="list.id"
           >
             {{ list.listName }}</b-dropdown-item
