@@ -32,14 +32,22 @@
 
       <!-- select: options are remove book, v-for(number of lists)add to listX  -->
 
-      <button
+      <!-- <button
         type="button"
         class="btn btn-outline-secondary"
         v-on:click.prevent=""
         v-if="!isSearchPage"
       >
         Remove Book
-      </button>
+      </button> -->
+
+      <div>
+        <label for="add-to-list">Add to List</label>
+        <select name="add-to-list" v-model="listName">
+          <!-- <option value="" v-for="list in list" :key="listName.id" :>{{listName[0]}}</option> -->
+
+      </select>
+      </div>
 
       <!-- <iframe src="https://archive.org/embed/harrypotterjasal0000rowl" width="560" height="384" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe> -->
     </div>

@@ -16,7 +16,7 @@
             id="exampleFormControlInput1"
             placeholder="List Name... (required)"
             required="true;"
-            v-model="listName.name"
+            v-model="list.listName"
           />
         </div>
         <button class="submit-button" v-on:click.prevent="createList()">
@@ -36,9 +36,9 @@ export default {
   data() {
     return {
       books: [],
-      listName: {
-        name: "",
-      },
+      list: {
+        listName: ''
+      }
     };
   },
   components: {
@@ -48,7 +48,7 @@ export default {
     getBooks() {},
 
     createList() {
-      BookService.createList(this.listName.name).then((response) => {
+      BookService.createList(this.list).then((response) => {
         if (response.status === 201) {
           // this.$router.push("/mybooks");
           alert("yo mamma");
