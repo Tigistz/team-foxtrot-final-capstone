@@ -28,3 +28,8 @@ SELECT * FROM master_table
 JOIN inventory ON inventory.book_id = master_table.book_id
 JOIN users ON users.user_id = master_table.user_id
 WHERE master_table.user_id = 3
+
+
+SELECT * 
+FROM master_table
+WHERE book_id = 3 AND user_id = 3 AND list_id = 1;
