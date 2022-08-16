@@ -43,6 +43,18 @@ public class JDBCBookDAO implements BookDAO{
         return books;
     }
 
+    /** Create A List */
+
+    @Override
+    public int createList(String listName) {
+
+        String sql = "INSERT INTO reading_list (list_name) VALUES (?) RETURNING list_id; ";
+
+        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, listName);
+
+        return id;
+    }
+
     /** Takes in the book to add to the user's inventory, checks if it already exists in the database
      *  If it already exists, create the
      *
@@ -50,6 +62,7 @@ public class JDBCBookDAO implements BookDAO{
      * @param newBook the book to add to the inventory
      * @param userId the user currently logged in
      */
+
     @Override
     public void addBook(Book newBook, int userId) throws BookAlreadyExistsException{
         Integer id = null;
@@ -85,6 +98,14 @@ public class JDBCBookDAO implements BookDAO{
                 tempListId);
 
     }
+
+    /** Add a book to a custom reading list */
+
+    //need ability for user to create a new list. (INSERT)
+    //once they have the new list - need ability to name this list (INSERT into reading list table)
+    //need ability to retrieve whichever list they select
+    //need a (PUT) to update the list_id a book
+
 
     @Override
     public void deleteBook(int bookToDeleteId, Principal principal) throws BookNotFoundException{  //website.com/mybooks/123
