@@ -6,6 +6,7 @@ import com.techelevator.dao.BookDAO;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookNotFoundException;
+import com.techelevator.model.ReadingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -72,10 +73,9 @@ public class BookController {
      *
      * @return 201 Created if successful
      */
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/readinglists", method = RequestMethod.POST)
-    public void createList(@RequestBody String listName) {
-        dao.createList(listName);
+    @RequestMapping(path = "/readinglists", method = RequestMethod.GET)
+    public List<ReadingList> retrieveReadingLists(Principal principal) {
+        return dao.retrieveReadingLists(principal);
     }
 
 //    @RequestMapping(path = "/mybooks/{bookId}", method = RequestMethod.GET)
@@ -83,6 +83,15 @@ public class BookController {
 //        return null;
 //        //return dao.retrieveHomeByMLSId(mlsId);
 //    }
+
+    /** Retrieve a specific reading list
+     *
+     */
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/readinglists", method = RequestMethod.POST)
+    public void createList(@RequestBody ReadingList listName, Principal principal) {
+        dao.createList(principal,listName);
+    }
 
 
     /**

@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.model.Book;
 import com.techelevator.model.BookAlreadyExistsException;
 import com.techelevator.model.BookNotFoundException;
+import com.techelevator.model.ReadingList;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -46,13 +47,43 @@ public class JDBCBookDAO implements BookDAO{
     /** Create A List */
 
     @Override
-    public int createList(String listName) {
+    public int createList(Principal principal, ReadingList listName) {
 
-        String sql = "INSERT INTO reading_list (list_name) VALUES (?) RETURNING list_id; ";
+        String addListName = principal.getName() + "|" + listName.getListName();
 
-        Integer id = jdbcTemplate.queryForObject(sql, Integer.class, listName);
+        String sql = "INSERT INTO reading_list (list_name) " +
+                "VALUES(?) RETURNING list_id;";
 
-        return id;
+        return jdbcTemplate.queryForObject(sql, Integer.class, addListName);
+
+
+    }
+
+    @Override
+    public List<ReadingList> retrieveReadingLists(Principal principal) {
+        List<ReadingList> readingList = new ArrayList<>();
+
+        String listName;
+        int usernameLength = principal.getName().length() + 1;
+
+        String sql = "SELECT * FROM reading_list " +
+                "WHERE list_name ILIKE ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, principal.getName() + '%');
+        while(results.next()) {
+            ReadingList list = new ReadingList();
+
+            list.setListId(results.getString("list_id"));
+
+            listName = results.getString("list_name").substring(usernameLength);
+
+
+            list.setListName(listName);
+            readingList.add(list);
+        }
+
+
+        return readingList;
     }
 
     /** Takes in the book to add to the user's inventory, checks if it already exists in the database
@@ -66,7 +97,7 @@ public class JDBCBookDAO implements BookDAO{
     @Override
     public void addBook(Book newBook, int userId) throws BookAlreadyExistsException{
         Integer id = null;
-        int tempListId = 1; //todo create the real list id method
+        int listId = 1; //todo create the real list id method
 
         String bookCheckSQL= "SELECT * FROM inventory WHERE book_isbn = ? ;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(bookCheckSQL, newBook.getIsbn());
@@ -74,7 +105,7 @@ public class JDBCBookDAO implements BookDAO{
             id = results.getInt("book_id");
 
 
-            if(checkForMasterList(id, userId,tempListId)) {
+            if(checkForMasterList(id, userId,listId)) {
                 throw new BookAlreadyExistsException();
             }
 
@@ -95,7 +126,7 @@ public class JDBCBookDAO implements BookDAO{
         jdbcTemplate.update(masterSQL,
                 id,
                 userId,
-                tempListId);
+                listId);
 
     }
 
