@@ -65,7 +65,7 @@ export default {
       BookService.createList(this.list).then((response) => {
         if (response.status === 201) {
           // this.$router.push("/mybooks");
-          alert("Success!");
+          // alert("Success!");
           this.$router.go();
         }
       });

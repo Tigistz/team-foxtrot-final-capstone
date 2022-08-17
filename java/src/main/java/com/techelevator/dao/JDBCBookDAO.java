@@ -86,6 +86,20 @@ public class JDBCBookDAO implements BookDAO{
         return readingList;
     }
 
+    @Override
+    public void updateBookList(Book bookToUpdate, int userId) {
+        int bookId = bookToUpdate.getBookId();
+        int listId = bookToUpdate.getReadingListId();
+        String sql = "UPDATE master_table SET list_id = ? WHERE book_id = ? AND user_id = ?;";
+        jdbcTemplate.update(sql, listId, bookId, userId);
+
+    }
+
+
+
+
+
+
     /** Takes in the book to add to the user's inventory, checks if it already exists in the database
      *  If it already exists, create the
      *

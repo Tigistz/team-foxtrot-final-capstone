@@ -10,7 +10,15 @@ public class Book {
     private String genre;
     private int userId;
     private int bookId;
+    private int readingListId;
 
+    public int getReadingListId() {
+        return readingListId;
+    }
+
+    public void setReadingListId(int readingListId) {
+        this.readingListId = readingListId;
+    }
 
     public String getIsbn() {
         return isbn;

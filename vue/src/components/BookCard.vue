@@ -29,46 +29,39 @@
         Add to My Books
       </button>
 
-      <!-- select: options are remove book, v-for(number of lists)add to listX  -->
-
-      <!-- <button
-        type="button"
-        class="btn btn-outline-secondary"
-        v-on:click.prevent=""
-        v-if="!isSearchPage"
-      >
-        Remove Book
-      </button> -->
-
-      <!-- <div>   PLEASE DON'T BREAK MEEEE
-        <label for="add-to-list">Add to List</label>
-        <select name="add-to-list" v-model="listName">
-          <option value="" v-for="list in userReadingLists" :key="list.id">
-            {{ list.listName }}
-          </option>
-        </select>
+      <!-- <div v-if="!isSearchPage">
+        <b-dropdown text="Add to List" variant="transparent" id="selectAdd" class="m-2">
+          <b-dropdown-item
+            v-for="item in userReadingLists"
+            
+            :key="item.id"
+            v-model="listToChangeTo"
+          >
+            {{ item.listName }}</b-dropdown-item
+          >
+        </b-dropdown>
       </div> -->
 
       <div v-if="!isSearchPage">
-        <b-dropdown text="Add to List" variant="transparent" id="selectAdd" class="m-2">
+        <b-dropdown
+          id="ddCommodity"
+          name="ddCommodity"
+          v-model="bookSelector.listSelection"
+          text="Select Item"
+          variant="primary"
+          class="m-md-2"
+        >
+          <b-dropdown-item disabled value="0">Select an Item</b-dropdown-item>
           <b-dropdown-item
-            v-for="list in userReadingLists"
-            value="list.id"
-            :key="list.id"
+            v-for="item in userReadingLists"
+            :key="item.listId"
+            :value="item.listId"
+            @click="changeBookList(item.listId)"
           >
-            {{ list.listName }}</b-dropdown-item
-          >
+            {{ item.listName }}
+          </b-dropdown-item>
         </b-dropdown>
       </div>
-      <!-- 
-        <label for="add-to-list">Add to List</label>
-        <select name="add-to-list" v-model="listName">
-          <option value="" v-for="list in userReadingLists" :key="list.id">
-            {{ list.listName }}
-          </option>
-        </select> -->
-
-      <!-- <iframe src="https://archive.org/embed/harrypotterjasal0000rowl" width="560" height="384" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe> -->
     </div>
   </div>
 </template>
@@ -87,10 +80,24 @@ export default {
         genre: this.book.subject,
         isbn: this.book.isbn,
       },
+      updateBook: {
+        bookId: this.bookId,
+        readingListId: ""
+      },
 
-      listName: "",
+      listToChangeTo: "",
 
       alertMessage: false,
+
+      someOtherProperty: null,
+      bookSelector: {
+        originalValue: [],
+        listSelection: "Value1",
+        disabled: false,
+        readonly: false,
+        visible: true,
+        color: "",
+      },
 
       // userReadingLists: [], //this is the group of user's reading lists
     };
@@ -147,6 +154,24 @@ export default {
       //}
       //})
     },
+    setThisId(id) {
+      this.listToChangeTo = id;
+    },
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    changeBookList(id) {
+      this.bookSelector.listSelection = id;
+      this.updateBook.readingListId = id;
+      this.updateBook.bookId = this.book.bookId;
+      BookService.updateBookListId(this.updateBook).then((response) => {
+        if (response.status === 201) {
+          this.$router.go();
+        }
+      });
+      console.log(id);
+    },
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   },
 };
 </script>
@@ -224,7 +249,7 @@ h5 {
   color: rgba(255, 255, 255, 0.884);
 }
 
-#selectAdd{
+#selectAdd {
   color: rgba(255, 255, 255, 0.884);
   border-color: rgba(255, 255, 255, 0.884);
 }
