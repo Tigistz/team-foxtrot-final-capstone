@@ -155,7 +155,7 @@ export default {
       this.updateBook.readingListId = this.book.readingListId;
       this.updateBook.bookId = this.book.bookId;
       
-      BookService.deleteBook(this.updateBook)
+      BookService.deleteBook(this.updateBook.readingListId, this.updateBook.bookId)
       .then((response) => {
         if (response.status === 204) {
           this.$router.go();

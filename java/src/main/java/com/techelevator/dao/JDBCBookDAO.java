@@ -199,10 +199,10 @@ public class JDBCBookDAO implements BookDAO{
         return book;
     }
 
-    public void deleteBook(Book book, int userId) throws BookNotFoundException {
+    public void deleteBook(int listId, int bookId, int userId) throws BookNotFoundException {
 
-        int bookId = book.getBookId();
-        int listId = book.getReadingListId();
+//        int bookId = book.getBookId();
+//        int listId = book.getReadingListId();
 
         String sql = "SELECT * " +
                 "FROM master_table " +

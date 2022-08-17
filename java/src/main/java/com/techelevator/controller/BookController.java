@@ -116,9 +116,9 @@ public class BookController {
      */
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/mybooks/", method = RequestMethod.DELETE)
-    public void deleteBook(@RequestBody Book book, Principal principal) throws BookNotFoundException {
-        dao.deleteBook(book, userDao.findIdByUsername(principal.getName()));
+    @RequestMapping(path = "/mybooks/{listId}/{bookId}", method = RequestMethod.DELETE)
+    public void deleteBook(@PathVariable int listId, @PathVariable int bookId, Principal principal) throws BookNotFoundException {
+        dao.deleteBook(listId, bookId, userDao.findIdByUsername(principal.getName()));
     }
 
 

@@ -12,7 +12,8 @@ import java.util.List;
 public interface BookDAO {
 
     void addBook(Book newBook, int userId) throws BookAlreadyExistsException;
-    void deleteBook(Book book, int userId) throws BookNotFoundException;
+    //void deleteBook(Book book, int userId) throws BookNotFoundException;
+    void deleteBook(int listId, int bookId, int userId) throws BookNotFoundException;
     List<Book> retrieveAllBooks(int userId); //TODO include the principal user
     int createList(Principal principal,ReadingList listName);
     List<ReadingList> retrieveReadingLists(Principal principal);
