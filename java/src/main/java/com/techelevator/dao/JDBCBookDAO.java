@@ -193,6 +193,7 @@ public class JDBCBookDAO implements BookDAO{
         book.setBookId(results.getInt("book_id"));
         book.setIsbn(results.getString("book_isbn"));
         book.setGenre(results.getString("book_genre"));
+        book.setReadingListId(results.getInt("list_id"));
         //book.setUserId(results.getInt("user_id"));
 
         return book;

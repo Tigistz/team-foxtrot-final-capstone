@@ -8,16 +8,21 @@
         <b-button-group>
           <b-button
             variant="dark"
+            v-on:click="updateFilter('')"
+          >
+          All Books
+          </b-button>  
+          <b-button
+            variant="dark"
             v-for="list in userReadingLists"
             :key="list.listId"
-            v-on:click="displaySelectedReadingList()"
-            >{{ list.listName }}</b-button
-          >
+            v-on:click="updateFilter(list.listId)"
+            >{{ list.listName }}</b-button> 
         </b-button-group>
       </div>
     </div>
-
-    <book-list :books="books" :userReadingLists="userReadingLists" />
+<!-- filtered -->
+    <book-list :books="filteredBooks" :userReadingLists="userReadingLists" />
 
     <div>
       <form class="list-form" v-on:submit.prevent="createList()">
@@ -53,6 +58,8 @@ export default {
         listName: "",
       },
       userReadingLists: [], //this is the group of user's reading lists
+
+      bookListIdFilter: ''
     };
   },
   components: {
@@ -60,6 +67,10 @@ export default {
   },
   methods: {
     getBooks() {},
+
+    updateFilter(listId){
+      this.bookListIdFilter = listId;
+    },
 
     createList() {
       BookService.createList(this.list).then((response) => {
@@ -70,10 +81,17 @@ export default {
         }
       });
     },
-    displaySelectedReadingList(){
-      BookService.retrieveSelectedList(this.list.listId)
-      .then((response) => {
-        this.books = response.data;
+    // displaySelectedReadingList(){
+    //   BookService.retrieveSelectedList(this.list.listId)
+    //   .then((response) => {
+    //     this.books = response.data;
+    //   });
+    // }
+  },
+  computed: {
+    filteredBooks(){
+      return this.books.filter( book => {
+        return this.bookListIdFilter == '' ? true: this.bookListIdFilter == book.readingListId;
       });
     }
   },
@@ -95,7 +113,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45vw;
+  width: 55vw;
   margin: 30px;
   text-align: left;
   background-color: rgba(0, 0, 0, 0.5);

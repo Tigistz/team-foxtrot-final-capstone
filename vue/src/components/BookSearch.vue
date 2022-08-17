@@ -48,9 +48,9 @@ export default {
   data() {
     return {
       options: [
-        { text: 'Title', value: 'title' },
-        { text: 'Author', value: 'author' },
-        { text: 'Subject', value: 'subject' }
+        { text: ' Title', value: 'title' },
+        { text: ' Author', value: 'author' },
+        { text: ' Subject', value: 'subject' }
       ],
       api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
       url_base: " https://www.googleapis.com/books/v1/volumes?q=",
@@ -195,6 +195,11 @@ main {
   100% {
     -webkit-transform: rotate(360deg);
   }
+}
+
+
+#btn-radios-1{
+  
 }
 
 .btn-outline-secondary{

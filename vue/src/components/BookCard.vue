@@ -51,7 +51,7 @@
           variant="primary"
           class="m-md-2"
         >
-          <b-dropdown-item disabled value="0">Select an Item</b-dropdown-item>
+          <!-- <b-dropdown-item disabled value="0">Select an Item</b-dropdown-item> -->
           <b-dropdown-item
             v-for="item in userReadingLists"
             :key="item.listId"
@@ -164,8 +164,8 @@ export default {
       this.updateBook.readingListId = id;
       this.updateBook.bookId = this.book.bookId;
       BookService.updateBookListId(this.updateBook).then((response) => {
-        if (response.status === 201) {
-          this.$router.go();
+        if (response.status === 200) {
+          // this.$router.go();
         }
       });
       console.log(id);
