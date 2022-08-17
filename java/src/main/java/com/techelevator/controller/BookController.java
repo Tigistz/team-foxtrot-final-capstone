@@ -84,6 +84,18 @@ public class BookController {
         //return dao.retrieveHomeByMLSId(mlsId);
     }
 
+
+
+    @RequestMapping(path = "/readinglists/{listId}", method = RequestMethod.PUT)  //TODO finish this controller
+
+    public void updateBookListId(@RequestBody Book bookToUpdate, Principal principal) {
+        dao.updateBookList(bookToUpdate, userDao.findIdByUsername(principal.getName()));
+    }
+
+
+
+
+
     /** Retrieve a specific reading list
      *
      */
@@ -94,6 +106,9 @@ public class BookController {
     }
 
 
+
+
+
     /**
      * Deletes a book from the reading list, same page @/mybooks / ID
      *
@@ -101,9 +116,9 @@ public class BookController {
      */
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/mybooks/{bookId}", method = RequestMethod.DELETE)
-    public void deleteBook(@PathVariable int bookId, Principal principal) throws BookNotFoundException {
-        dao.deleteBook(bookId, principal);
+    @RequestMapping(path = "/mybooks/{listId}/{bookId}", method = RequestMethod.DELETE)
+    public void deleteBook(@PathVariable int listId, @PathVariable int bookId, Principal principal) throws BookNotFoundException {
+        dao.deleteBook(listId, bookId, userDao.findIdByUsername(principal.getName()));
     }
 
 

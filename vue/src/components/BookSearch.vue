@@ -21,7 +21,8 @@
         buttons
       ></b-form-radio-group>
     </b-form-group>
-      <input type="submit" value="Search" class="btn btn-outline-secondary btn-lg" />
+      <!-- <input type="submit" value="Search" class="btn btn-outline-secondary btn-lg" /> -->
+      <button type="submit" class="btn btn-danger">Search</button>
       <!-- <div>
         <label for="filter">Search By</label>&nbsp;
         <select name="filter" v-model="inputType">
@@ -48,9 +49,9 @@ export default {
   data() {
     return {
       options: [
-        { text: 'Title', value: 'title' },
-        { text: 'Author', value: 'author' },
-        { text: 'Subject', value: 'subject' }
+        { text: ' Title', value: 'title' },
+        { text: ' Author', value: 'author' },
+        { text: ' Subject', value: 'subject' }
       ],
       api_key: "AIzaSyA2SB7helUW9bOBwnGTglWfkA31h0ovovg",
       url_base: " https://www.googleapis.com/books/v1/volumes?q=",
@@ -83,7 +84,7 @@ export default {
             this.book = {};
             this.book.title = item.title;
             this.book.author = item.author_name[0];
-            this.book.isbn = item.isbn[1];
+            this.book.isbn = item.isbn[0];
             // this.book.subject = item.subject[0];
             this.books.push(this.book);
             
@@ -197,12 +198,19 @@ main {
   }
 }
 
+
+#btn-radios-1{
+  
+}
+
 .btn-outline-secondary{
   background-color: rgba(0, 0, 0, 0.45);
   margin-top: 1vh;
   color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+  margin-top: 1vh;
 }
- 
 
 
 </style>

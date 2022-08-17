@@ -86,6 +86,20 @@ public class JDBCBookDAO implements BookDAO{
         return readingList;
     }
 
+    @Override
+    public void updateBookList(Book bookToUpdate, int userId) {
+        int bookId = bookToUpdate.getBookId();
+        int listId = bookToUpdate.getReadingListId();
+        String sql = "UPDATE master_table SET list_id = ? WHERE book_id = ? AND user_id = ?;";
+        jdbcTemplate.update(sql, listId, bookId, userId);
+
+    }
+
+
+
+
+
+
     /** Takes in the book to add to the user's inventory, checks if it already exists in the database
      *  If it already exists, create the
      *
@@ -138,24 +152,24 @@ public class JDBCBookDAO implements BookDAO{
     //need a (PUT) to update the list_id a book
 
 
-    @Override
-    public void deleteBook(int bookToDeleteId, Principal principal) throws BookNotFoundException{  //website.com/mybooks/123
-        //retrieve where the Book ID in the database matches the ones we're trying to delete
-        String bookIdSQL = "SELECT book_id FROM inventory WHERE book_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(bookIdSQL, bookToDeleteId);
-
-        //check if the book at the ID we're trying to delete actually exists in the database
-
-        if(results.next()){
-            //if it exists we have the bookId to delete now, send another SQL query
-            String sql = "DELETE FROM inventory WHERE book_id = ?";
-            jdbcTemplate.update(sql, bookToDeleteId);
-        }
-        else{
-            throw new BookNotFoundException();
-        }
-
-    }
+//    @Override
+//    public void deleteBook(int bookToDeleteId, Principal principal) throws BookNotFoundException{  //website.com/mybooks/123
+//        //retrieve where the Book ID in the database matches the ones we're trying to delete
+//        String bookIdSQL = "SELECT book_id FROM inventory WHERE book_id = ?";
+//        SqlRowSet results = jdbcTemplate.queryForRowSet(bookIdSQL, bookToDeleteId);
+//
+//        //check if the book at the ID we're trying to delete actually exists in the database
+//
+//        if(results.next()){
+//            //if it exists we have the bookId to delete now, send another SQL query
+//            String sql = "DELETE FROM inventory WHERE book_id = ?";
+//            jdbcTemplate.update(sql, bookToDeleteId);
+//        }
+//        else{
+//            throw new BookNotFoundException();
+//        }
+//
+//    }
 
 
     private boolean checkForMasterList(int bookId, int userId, int listId){
@@ -179,8 +193,31 @@ public class JDBCBookDAO implements BookDAO{
         book.setBookId(results.getInt("book_id"));
         book.setIsbn(results.getString("book_isbn"));
         book.setGenre(results.getString("book_genre"));
+        book.setReadingListId(results.getInt("list_id"));
         //book.setUserId(results.getInt("user_id"));
 
         return book;
+    }
+
+    public void deleteBook(int listId, int bookId, int userId) throws BookNotFoundException {
+
+//        int bookId = book.getBookId();
+//        int listId = book.getReadingListId();
+
+        String sql = "SELECT * " +
+                "FROM master_table " +
+                "WHERE list_id = ? AND book_id = ? AND user_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listId, bookId, userId);
+
+        if(results.next()){
+            //if it exists we have the bookId to delete now, send another SQL query
+            String deleteSql = "DELETE FROM master_table WHERE list_id = ? AND book_id = ? AND user_id = ?;";
+            jdbcTemplate.update(deleteSql, listId, bookId, userId);
+        }
+        else{
+            throw new BookNotFoundException();
+        }
+
     }
 }

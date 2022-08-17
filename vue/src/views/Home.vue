@@ -42,11 +42,13 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+
+
 
  * {
   margin: 0;
-  padding: 0;
+   padding: 0;
   box-sizing: border-box;
 
 }
@@ -80,6 +82,7 @@ main {
 
   /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.), rgba(0, 0, 0, 0.8)); */
 }
+
 
 .slogan {
   flex-direction: column;
@@ -119,4 +122,5 @@ main {
 
 
 
+     
 </style>

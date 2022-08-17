@@ -28,6 +28,13 @@ export default {
 
    retrieveSelectedList(id){
        return axios.get(`/readinglists/${id}`);
+   },
+
+   updateBookListId(book){
+       return axios.put(`/readinglists/${book.id}`, book);
+   },
+   deleteBook(readingListId, bookId){
+    return axios.delete(`/mybooks/${readingListId}/${bookId}`);
    }
 
 }
