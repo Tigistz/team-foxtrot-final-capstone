@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Add Your Own Book!</h1>
+    <h2>Add Your Own Book</h2>
     <div class="form-entire-form">
       <!-- form -->
 
@@ -86,8 +86,9 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+h2 {
   margin-top: 5vh;
+  color:white
 }
 
 .form-entire-form {

@@ -9,7 +9,7 @@
   <!-- <a class="navbar-brand" href="#">Team Foxtrot Books</a> -->
 
  
-      <img id="fox-logo" src="../assets/fox-logo-2nd.png"/>
+      <img id="fox-logo" src="../assets/fox-only-2.png"/>
       
     
 
@@ -83,7 +83,7 @@ export default {
 
 #fox-logo {
   
-  width:100px;
+  width:110px;
   height:auto;
   
 
