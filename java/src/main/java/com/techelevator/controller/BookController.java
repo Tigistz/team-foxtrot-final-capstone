@@ -78,11 +78,11 @@ public class BookController {
         return dao.retrieveReadingLists(principal);
     }
 
-//    @RequestMapping(path = "/mybooks/{bookId}", method = RequestMethod.GET)
-//    public Book retrieveBookByID(@PathVariable String bookId) throws BookNotFoundException {
-//        return null;
-//        //return dao.retrieveHomeByMLSId(mlsId);
-//    }
+    @RequestMapping(path = "/readinglists/{listId}", method = RequestMethod.GET)
+    public Book retrieveListByID(@PathVariable String listId) throws BookNotFoundException {
+        return null;
+        //return dao.retrieveHomeByMLSId(mlsId);
+    }
 
     /** Retrieve a specific reading list
      *

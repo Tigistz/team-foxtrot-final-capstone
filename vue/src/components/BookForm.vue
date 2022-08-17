@@ -1,10 +1,11 @@
 <template>
-  <div id="add-your-book">
-    <h1>Add Your Own Book!</h1>
-    <div class="form-entire-form">
-      <!-- form -->
+  <div >
+    <!-- <h1>Add Your Own Book!</h1> -->
+    <!-- <div class="form-entire-form"> -->
+      <!-- form id="add-your-book" -->
 
-      <form class="new-book-form" v-on:submit.prevent="addBookToInventory">
+      <form id="add-your-book" class="new-book-form" v-on:submit.prevent="addBookToInventory">
+        <h2>Add Your Own Book!</h2>
         <div class="form-group">
           <!-- <label for="exampleFormControlInput1">Book Title</label> -->
           <input
@@ -49,12 +50,13 @@
           </div>
         
 
-        <button class="submit-button" v-on:click.prevent="addBookToInventory()">
-          Add to My Books
-        </button>
+        <!-- <button class="submit-button" v-on:click.prevent="addBookToInventory()"> -->
+         <button type="submit" class="btn btn-danger">Add to My Books</button>
+          
+        <!-- </button> -->
       </form>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -87,16 +89,24 @@ export default {
 
 <style scoped>
 #add-your-book {
-  display: flex;
+  display:flex;
+  
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  width: 40vw;
+  width: 30vw;
   height: 50vh;
-  border-radius:10px;
+  margin-left: 30%;
+  margin-top: 10%;
+  border-radius: 15px;
+  
+  
+  
+  
 }
 
-h1 {
+h2 {
  color:rgba(255, 255, 255, 0.884);
   margin-top: 4vh;
   margin-bottom: 2vh;
@@ -109,12 +119,24 @@ h1 {
 } */
 
 .form-group {
-  width: 30vw;
-  margin: 2vh;
+  width: 20vw;
+  margin: 1vh;
 }
-.submit-button {
-  justify-content: center;
-  /* position: fixed; */
+.btn-danger, .btn-danger:hover {
+ 
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+  
+}
+
+/* .submit-button {
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+   */
+  /* justify-content: center; */
+  /* position: fixed;
   bottom: 0;
   padding: 15px 25px;
   font-size: 24px;
@@ -126,9 +148,8 @@ h1 {
   background-color: #f8f7fc;
   border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 9px #999; */
 
-}
 .button:active {
   
  background-color: #c9d5dd; 

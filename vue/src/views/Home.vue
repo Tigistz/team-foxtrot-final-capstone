@@ -36,14 +36,38 @@ export default {
   margin: 0;
    padding: 0;
   box-sizing: border-box;
- background-size: cover;
- background-position: center center;
-  display: flex;
-   width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  
+
+}
+
+body {
+  font-family: 'montserrat', sans-serif;
+}
+
+home {
+  /* background-image: url('/assets/home-page-books-image.jpg'); */
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4s;
+}
+
+
+
+main {
+  min-height: 100vh;
+  padding: 25px;
+
+  /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)); */
+}
+
+.search-box {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.search-box .search-bar {
+  display: block;
+  width: 100%;
+  padding: 15px;
   
 }
 .container .content {

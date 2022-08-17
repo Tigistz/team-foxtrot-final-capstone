@@ -86,11 +86,14 @@ export default {
 }
 
 .form-control {
+  position:relative;
   width: 15vw;
   margin-top: 1vh;
 }
 
 .form-signing {
+    
+  position:relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,6 +101,7 @@ export default {
   width: 25vw;
   height: 32vh;
   border-radius:10px;
+  
 }
 
 h1 {
@@ -107,9 +111,11 @@ h1 {
 }
 
 .btn-danger, .btn-danger:hover {
+ 
   color: rgba(255, 255, 255, 0.884);
   border-color: rgb(255, 94, 0);
   background-color: rgb(255, 94, 0);
+  
 }
 
 .need {
