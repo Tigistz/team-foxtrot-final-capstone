@@ -1,20 +1,32 @@
 <template>
 
-  
-    <div class="container">
+   <main>
+
+
+     <div class="slogan">
+    <h1>Explore books and create custom reading lists. For free.</h1>
+</div>
+
+
+<div class="context">
+<h5>Foxtrot Book Library allows you to search a world class collection,build your own reading lists, </h5>
+<h5>and even add your own books.We help you figure out what to read next and serve as your virtual book shelf.</h5>
+</div>
+
+     <img 
+    src="../assets/Fox-Logo.png"
+    class="image-Two" 
+    /> 
+
+
     
-    <div class="content">
-    <h1 class="top-container">Foxtrot Book Library</h1>
-    <h2>Nothing is pleasanter than exploring a library.</h2>
-    <p>Top 250 Most Beautiful Quotations About Libraries,
-       Librar, Library and Information Science. Famous quotes
-        describing why librarie and cataloging important and 
-        librarians and catalogers indispensable.</p>
-     
-  </div>
-  <router-link class="nav-link" v-bind:to="{ name: 'search'}"><button class="button">Find Your Books</button></router-link>
-    </div>
-  <!-- </main> -->
+   <router-link class="have" :to="{ name: 'search' }">
+ <button type="submit" class="button">Journey Starts Here</button>
+</router-link>
+
+  </main>  
+
+
 </template>
 
 
@@ -31,8 +43,10 @@ export default {
 
 
 <style scoped>
-.container{
-   /* background-image:url("../assets/Home-Background.jpeg");  */
+
+
+
+ * {
   margin: 0;
    padding: 0;
   box-sizing: border-box;
@@ -59,73 +73,53 @@ main {
   /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75)); */
 }
 
-.search-box {
-  width: 100%;
-  margin-bottom: 30px;
+
+.image-Two {
+  display:grid;
+  width:300px;
+  margin-left: 20%;
+  margin-top:0%;
+
+  /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.), rgba(0, 0, 0, 0.8)); */
 }
 
-.search-box .search-bar {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  
-}
-.container .content {
-  position:absolute; /* Position the background text */
-  align-items: center; /* At the bottom. Use top:0 to append it to the top */
-  top: 3em;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-   /* background: rgb(241, 240, 243); 
-   background: rgba(243, 242, 248, 0.5); */
-  color: #e9dcdc; /* Grey text */
-  width: 50%; /* Full width */
-  padding:5px; /* Some padding */
-  }
- .container.content.btn {
-  color: dodgerblue;
-  background: mediumturquoise;
-  border: 5px solid #FFFF00;
-  display: flex;
+
+.slogan {
+  flex-direction: column;
   justify-content: center;
-  
-  }
-  .content{
-    margin: 0 auto;
-  }
+  align-items: center;
+  color:white;
+  display:flex;
+  margin-top: 10%
+}
 
 
+.context {
 
-  .top-container {
-  position: relative;
-  height: 100px;
-  margin: 0 auto;
-  text-align: center;
-} 
+  color:white;
+}
 
 .button {
-  justify-content: center;
-  /* position: fixed; */
-  bottom: 0;
-  padding: 15px 25px;
-  font-size: 24px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-  color: rgb(238, 228, 225);
-  background-color: #f8f7fc;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-}
-
-
-.button:active {
   
- background-color: #c9d5dd; 
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+  background-color:#f73e06; 
+  
+  /* #e75123;  */
+  border: none;
+  color: white;
+  padding: 10px 72px;
+  text-align: center;
+  font-size: 20px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 250px;
 }
+
+.button:hover {opacity: 1}
+
 
 
      
