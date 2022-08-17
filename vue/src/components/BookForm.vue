@@ -113,9 +113,26 @@ h1 {
   margin: 2vh;
 }
 .submit-button {
-  color: rgba(255, 255, 255, 0.884);
-  border-color: rgb(255, 94, 0);
-  background-color: rgb(255, 94, 0);
+  justify-content: center;
+  /* position: fixed; */
+  bottom: 0;
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  color: rgb(238, 228, 225);
+  background-color: #f8f7fc;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 
+}
+.button:active {
+  
+ background-color: #c9d5dd; 
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 </style>
