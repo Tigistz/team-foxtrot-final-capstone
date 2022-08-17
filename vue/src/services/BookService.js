@@ -32,6 +32,9 @@ export default {
 
    updateBookListId(book){
        return axios.put(`/readinglists/${book.id}`, book);
+   },
+   deleteBook(book){
+    return axios.delete(`/mybooks`, book);
    }
 
 }

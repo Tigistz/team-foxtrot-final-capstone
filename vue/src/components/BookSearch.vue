@@ -83,7 +83,7 @@ export default {
             this.book = {};
             this.book.title = item.title;
             this.book.author = item.author_name[0];
-            this.book.isbn = item.isbn[1];
+            this.book.isbn = item.isbn[0];
             // this.book.subject = item.subject[0];
             this.books.push(this.book);
             

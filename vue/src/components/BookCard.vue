@@ -13,7 +13,7 @@
       />
       <img src="../assets/No_Preview_image.png" class="imageTwo image" />
     </div>
-    <p>ISBN: {{ book.isbn }}</p>
+    <p id="isbn-display">ISBN: {{ book.isbn }}</p>
 
     <b-alert class="alert" v-if="alertMessage" show dismissible
       >Already Exists</b-alert
@@ -60,6 +60,10 @@
           >
             {{ item.listName }}
           </b-dropdown-item>
+
+          <b-dropdown-item @click="deleteBook()">
+            Delete Book
+          </b-dropdown-item>
         </b-dropdown>
       </div>
     </div>
@@ -82,7 +86,7 @@ export default {
       },
       updateBook: {
         bookId: this.bookId,
-        readingListId: ""
+        readingListId: "",
       },
 
       listToChangeTo: "",
@@ -147,18 +151,23 @@ export default {
       });
     },
 
-    removeBookFromInventory() {
-      //bookservice.delete(this.book).then((response) => {
-      //  if(response.status === 200) {
-      //    this.$router.push("/mybooks");
-      //}
-      //})
+    deleteBook() {
+      this.updateBook.readingListId = this.book.readingListId;
+      this.updateBook.bookId = this.book.bookId;
+      
+      BookService.deleteBook(this.updateBook)
+      .then((response) => {
+        if (response.status === 204) {
+          this.$router.go();
+        } else {
+          alert("There was an error!");
+        }
+      });
     },
     setThisId(id) {
       this.listToChangeTo = id;
     },
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     changeBookList(id) {
       this.bookSelector.listSelection = id;
       this.updateBook.readingListId = id;
@@ -166,12 +175,12 @@ export default {
       BookService.updateBookListId(this.updateBook).then((response) => {
         if (response.status === 200) {
           this.$router.go();
+        } else {
+          alert("There was an error!");
         }
       });
       console.log(id);
     },
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   },
 };
 </script>
