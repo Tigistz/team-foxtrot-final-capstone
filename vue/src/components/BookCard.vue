@@ -165,7 +165,7 @@ export default {
       this.updateBook.bookId = this.book.bookId;
       BookService.updateBookListId(this.updateBook).then((response) => {
         if (response.status === 200) {
-          // this.$router.go();
+          this.$router.go();
         }
       });
       console.log(id);
