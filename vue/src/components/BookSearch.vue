@@ -21,7 +21,8 @@
         buttons
       ></b-form-radio-group>
     </b-form-group>
-      <input type="submit" value="Search" class="btn btn-outline-secondary btn-lg" />
+      <!-- <input type="submit" value="Search" class="btn btn-outline-secondary btn-lg" /> -->
+      <button type="submit" class="btn btn-danger">Search</button>
       <!-- <div>
         <label for="filter">Search By</label>&nbsp;
         <select name="filter" v-model="inputType">
@@ -206,8 +207,10 @@ main {
   background-color: rgba(0, 0, 0, 0.45);
   margin-top: 1vh;
   color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+  margin-top: 1vh;
 }
- 
 
 
 </style>
