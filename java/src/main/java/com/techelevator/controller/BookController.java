@@ -84,6 +84,18 @@ public class BookController {
         //return dao.retrieveHomeByMLSId(mlsId);
     }
 
+
+
+    @RequestMapping(path = "/readinglists/{listId}", method = RequestMethod.PUT)  //TODO finish this controller
+
+    public void updateBookListId(@RequestBody Book bookToUpdate, Principal principal) {
+        dao.updateBookList(bookToUpdate, userDao.findIdByUsername(principal.getName()));
+    }
+
+
+
+
+
     /** Retrieve a specific reading list
      *
      */
@@ -92,6 +104,9 @@ public class BookController {
     public void createList(@RequestBody ReadingList listName, Principal principal) {
         dao.createList(principal,listName);
     }
+
+
+
 
 
     /**
