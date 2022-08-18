@@ -22,7 +22,7 @@
       ></b-form-radio-group>
     </b-form-group>
       <!-- <input type="submit" value="Search" class="btn btn-outline-secondary btn-lg" /> -->
-      <button type="submit" class="btn btn-danger">Search</button>
+      <button type="submit" class="button">Search</button>
       <!-- <div>
         <label for="filter">Search By</label>&nbsp;
         <select name="filter" v-model="inputType">
@@ -203,14 +203,27 @@ main {
   
 }
 
-.btn-outline-secondary{
-  background-color: rgba(0, 0, 0, 0.45);
-  margin-top: 1vh;
-  color: rgba(255, 255, 255, 0.884);
-  border-color: rgb(255, 94, 0);
-  background-color: rgb(255, 94, 0);
-  margin-top: 1vh;
+.button {
+  
+  background-color:#f73e06; 
+  
+  /* #e75123;  */
+  border: none;
+  color: white;
+  padding: 10px 50px;
+  text-align: center;
+  font-size: 20px;
+  margin: 4px 2px;
+  opacity: 0.8;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 2vh;
 }
+
+.button:hover {opacity: 1}
 
 
 </style>
