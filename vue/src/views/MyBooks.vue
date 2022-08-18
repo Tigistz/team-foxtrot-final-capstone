@@ -6,49 +6,48 @@
 
       <div class="list-buttons">
         <b-button-group>
-          <b-button
-            variant="dark"
-            v-on:click="updateFilter('')"
-          >
-          All Books
-          </b-button>  
+          <b-button variant="dark" v-on:click="updateFilter('')">
+            All Books
+          </b-button>
           <b-button
             variant="dark"
             v-for="list in userReadingLists"
             :key="list.listId"
             v-on:click="updateFilter(list.listId)"
-            >{{ list.listName }}</b-button> 
+            >{{ list.listName }}</b-button
+          >
         </b-button-group>
       </div>
     </div>
-<!-- filtered -->
+    <!-- filtered -->
     <book-list :books="filteredBooks" :userReadingLists="userReadingLists" />
 
     <div>
-      
-        
-        <div class="toggle-button">
-          <b-button v-b-toggle.collapse-3 class="m-1">Create a List</b-button>
-          <b-collapse visible id="collapse-3">
-            <form class="list-form" v-on:submit.prevent="createList()">
+      <div class="toggle-button">
+        <b-button v-b-toggle.collapse-3 class="m-1">Create a List</b-button>
+        <b-collapse visible id="collapse-3">
+          <form class="list-form" v-on:submit.prevent="createList()">
             <div class="form-group">
-             <input
-               type="text"
-               class="form-control"
-               id="exampleFormControlInput1"
-               placeholder="List Name... (required)"
-               required="true;"
-               v-model="list.listName"
-             />
-             <button class="submit-button" v-on:click.prevent="createList()">
-          Create List
-        </button>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="List Name... (required)"
+                required="true;"
+                v-model="list.listName"
+              />
+              <button class="submit-button" v-on:click.prevent="createList()">
+                Create List
+              </button>
             </div>
-            </form>
-          </b-collapse>
-        </div>
-      
+          </form>
+        </b-collapse>
+      </div>
     </div>
+
+
+
+    
   </div>
 </template>
 
@@ -61,13 +60,14 @@ export default {
   data() {
     return {
       books: [], //this is the book objects we feed into the bookcards
-      list: {  //this is the create new list name
+      list: {
+        //this is the create new list name
         listId: "",
         listName: "",
       },
       userReadingLists: [], //this is the group of user's reading lists
 
-      bookListIdFilter: ''
+      bookListIdFilter: "",
     };
   },
   components: {
@@ -76,7 +76,7 @@ export default {
   methods: {
     getBooks() {},
 
-    updateFilter(listId){
+    updateFilter(listId) {
       this.bookListIdFilter = listId;
     },
 
@@ -97,11 +97,13 @@ export default {
     // }
   },
   computed: {
-    filteredBooks(){
-      return this.books.filter( book => {
-        return this.bookListIdFilter == '' ? true: this.bookListIdFilter == book.readingListId;
+    filteredBooks() {
+      return this.books.filter((book) => {
+        return this.bookListIdFilter == ""
+          ? true
+          : this.bookListIdFilter == book.readingListId;
       });
-    }
+    },
   },
   created() {
     BookService.getMyBooks().then((response) => {
@@ -210,5 +212,4 @@ h2 h1 {
   margin-bottom: 3vh;
   margin-top: 1vh;
 }
-
 </style>
