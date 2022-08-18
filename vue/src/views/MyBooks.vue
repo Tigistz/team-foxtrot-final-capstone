@@ -24,32 +24,26 @@
 <!-- filtered -->
     <book-list :books="filteredBooks" :userReadingLists="userReadingLists" />
 
-    <div>
+     <div>
+    
       
-        
-        <div class="toggle-button">
-          <b-button v-b-toggle.collapse-3 class="m-1">Create a List</b-button>
-          <b-collapse visible id="collapse-3">
-            <form class="list-form" v-on:submit.prevent="createList()">
+          <form class="list-form" v-on:submit.prevent="createList()">
             <div class="form-group">
-             <input
-               type="text"
-               class="form-control"
-               id="exampleFormControlInput1"
-               placeholder="List Name... (required)"
-               required="true;"
-               v-model="list.listName"
-             />
-             <button class="submit-button" v-on:click.prevent="createList()">
-          Create List
-        </button>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="List Name... (required)"
+                required="true;"
+                v-model="list.listName"
+              />
+              <button class="submit-button" v-on:click.prevent="createList()">
+                Create List
+              </button>
             </div>
-            </form>
-          </b-collapse>
-        </div>
-      
+          </form>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -202,13 +196,49 @@ h2 h1 {
   margin-top: 0.5vh;
 }
 
-.m-1 {
+/* .m-1, .m-1:hover {
+  margin-bottom: 2vh;
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+} */
+
+.form-control {
+  margin-bottom: 1vh;
+  margin-top: 2vh;
+}
+
+/* .btn-danger, .btn-danger:hover {
+ 
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+  
+} */
+
+.submit-button {
+  
+  background-color:#f73e06; 
+  
+  /* #e75123;  */
+  border: none;
+  color: white;
+  padding: 1vh 1vw;
+  text-align: center;
+  font-size: 17px;
+  opacity: 0.7;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 0.3vh;
   margin-bottom: 2vh;
 }
 
-.form-control {
-  margin-bottom: 3vh;
-  margin-top: 1vh;
+.submit-button:hover {
+  opacity: 1;
+  background-color:#f73e06; 
 }
 
 </style>

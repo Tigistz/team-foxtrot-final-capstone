@@ -5,7 +5,7 @@
         <input
           type="text"
           class="search-bar"
-          placeholder="Search titles, authors, isbn ..."
+          placeholder="Search titles, authors, subject ..."
           v-model="query"
         />
         
