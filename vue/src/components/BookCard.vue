@@ -13,7 +13,10 @@
       />
       <img src="../assets/No_Preview_image.png" class="imageTwo image" />
     </div>
-    <p id="isbn-display">ISBN: {{ book.isbn }}</p>
+    <p id="isbn-display">
+      <span class="isbn-hidden">ISBN</span>
+      <span class="isbn-unhidden">ISBN: {{ book.isbn }}</span>
+    </p>
 
     <b-alert class="alert" v-if="alertMessage" show dismissible
       >Already Exists</b-alert
@@ -24,7 +27,7 @@
         type="button"
         class="btn btn-outline-secondary"
         v-on:click.prevent="addBookToInventory()"
-        v-if="isSearchPage"
+        v-if="isSearchPage && loggedIn"
       >
         Add to My Books
       </button>
@@ -123,6 +126,9 @@ export default {
     isSearchPage() {
       return this.$route.name === "search";
     },
+    loggedIn(){
+      return this.$store.state.token != '';
+    }
   },
 
   methods: {
@@ -188,6 +194,21 @@ export default {
 
 
 <style scoped>
+
+.isbn-unhidden {
+  display: none;
+}
+
+p:hover .isbn-hidden {
+  display: none;
+}
+
+p:hover .isbn-unhidden {
+  display: inline;
+}
+
+
+
 .btn-outline-secondary {
   /* justify-self: flex-end; */
   background-color: rgba(0, 0, 0, 0.5);
