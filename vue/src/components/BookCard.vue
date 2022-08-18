@@ -50,23 +50,23 @@
           id="ddCommodity"
           name="ddCommodity"
           v-model="bookSelector.listSelection"
-          text="Select Item"
-          variant="primary"
-          class="m-md-2"
+          text="Add to List"
+          variant="light bg-transparent text-white"
+          class="m-2"
         >
           <!-- <b-dropdown-item disabled value="0">Select an Item</b-dropdown-item> -->
-          <b-dropdown-item
+          <b-dropdown-item-button
             v-for="item in userReadingLists"
             :key="item.listId"
             :value="item.listId"
             @click="changeBookList(item.listId)"
           >
             {{ item.listName }}
-          </b-dropdown-item>
+          </b-dropdown-item-button>
 
-          <b-dropdown-item @click="deleteBook()">
+          <b-dropdown-item-button @click="deleteBook()">
             Delete Book
-          </b-dropdown-item>
+          </b-dropdown-item-button>
         </b-dropdown>
       </div>
     </div>
@@ -283,4 +283,22 @@ h5 {
   color: rgba(255, 255, 255, 0.884);
   border-color: rgba(255, 255, 255, 0.884);
 }
+
+.dropdown-toggle .btn-secondary{
+  background-color: rgba(0, 0, 0, 0.5);
+
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-transparent{}
+
+
+  
+
+}
+
+
+
+
 </style>

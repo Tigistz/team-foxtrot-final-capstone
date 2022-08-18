@@ -97,8 +97,8 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   width: 30vw;
   height: 50vh;
-  margin-left: 30%;
-  margin-top: 10%;
+  margin-left: 28%;
+  margin-top: 15%;
   border-radius: 15px;
   
   
@@ -108,7 +108,7 @@ export default {
 
 h2 {
  color:rgba(255, 255, 255, 0.884);
-  margin-top: 4vh;
+  margin-top: 2vh;
   margin-bottom: 2vh;
 }
 
@@ -127,6 +127,7 @@ h2 {
   color: rgba(255, 255, 255, 0.884);
   border-color: rgb(255, 94, 0);
   background-color: rgb(255, 94, 0);
+  margin-top: 1vh;
   
 }
 

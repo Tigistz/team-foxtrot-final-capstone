@@ -90,7 +90,7 @@ main {
 
 .image-Two {
   justify-content: center;
-  width:320px;
+  width:325px;
   flex-direction: column;
   align-items: center;
   /* margin-left: 42%;

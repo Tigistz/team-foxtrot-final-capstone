@@ -4,7 +4,7 @@
       <h1 class="myBooks">My Books</h1>
       <h2 class="welcome">Welcome {{ $store.state.user.username }}!</h2>
 
-      <div>
+      <div class="list-buttons">
         <b-button-group>
           <b-button
             variant="dark"
@@ -188,5 +188,9 @@ main {
 
 h2 h1 {
   color: rgba(255, 255, 255, 0.884);
+}
+
+.list-buttons {
+  margin-top: 0.5vh;
 }
 </style>
