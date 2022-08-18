@@ -5,7 +5,7 @@
         <input
           type="text"
           class="search-bar"
-          placeholder="Search titles, authors, isbn ..."
+          placeholder="Search titles, authors, subject ..."
           v-model="query"
         />
         
@@ -84,7 +84,7 @@ export default {
             this.book = {};
             this.book.title = item.title;
             this.book.author = item.author_name[0];
-            this.book.isbn = item.isbn[0];
+            this.book.isbn = item.isbn[3];
             // this.book.subject = item.subject[0];
             this.books.push(this.book);
             

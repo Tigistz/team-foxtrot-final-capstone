@@ -18,7 +18,7 @@
       <span class="isbn-unhidden">ISBN: {{ book.isbn }}</span>
     </p>
 
-    <b-alert class="alert" v-if="alertMessage" show dismissible
+    <b-alert class="alert" v-if="alertMessage" show variant="danger"
       >Already Exists</b-alert
     >
 
@@ -27,7 +27,7 @@
         type="button"
         class="btn btn-outline-secondary"
         v-on:click.prevent="addBookToInventory()"
-        v-if="isSearchPage && loggedIn"
+        v-if="isSearchPage && loggedIn && !alertMessage"
       >
         Add to My Books
       </button>
@@ -258,6 +258,8 @@ p:hover .isbn-unhidden {
 
 .alert {
   /* styling for alert here */
+  background-color: transparent;
+  color: white;
 }
 .book-cover {
   width: 100%;
@@ -284,19 +286,6 @@ h5 {
   border-color: rgba(255, 255, 255, 0.884);
 }
 
-.dropdown-toggle .btn-secondary{
-  background-color: rgba(0, 0, 0, 0.5);
-
-.dropdown-menu {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.bg-transparent{}
-
-
-  
-
-}
 
 
 

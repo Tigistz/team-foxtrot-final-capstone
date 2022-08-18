@@ -6,42 +6,42 @@
 
       <div class="list-buttons">
         <b-button-group>
-          <b-button
-            variant="dark"
-            v-on:click="updateFilter('')"
-          >
-          All Books
-          </b-button>  
+          <b-button variant="dark" v-on:click="updateFilter('')">
+            All Books
+          </b-button>
           <b-button
             variant="dark"
             v-for="list in userReadingLists"
             :key="list.listId"
             v-on:click="updateFilter(list.listId)"
-            >{{ list.listName }}</b-button> 
+            >{{ list.listName }}</b-button
+          >
         </b-button-group>
       </div>
     </div>
-<!-- filtered -->
+    <!-- filtered -->
     <book-list :books="filteredBooks" :userReadingLists="userReadingLists" />
 
-    <div>
-      <form class="list-form" v-on:submit.prevent="createList()">
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="List Name... (required)"
-            required="true;"
-            v-model="list.listName"
-          />
-        </div>
-        <button class="submit-button" v-on:click.prevent="createList()">
-          Create List
-        </button>
-      </form>
+     <div>
+    
+      
+          <form class="list-form" v-on:submit.prevent="createList()">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="List Name... (required)"
+                required="true;"
+                v-model="list.listName"
+              />
+              <button class="submit-button" v-on:click.prevent="createList()">
+                Create List
+              </button>
+            </div>
+          </form>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -53,13 +53,14 @@ export default {
   data() {
     return {
       books: [], //this is the book objects we feed into the bookcards
-      list: {  //this is the create new list name
+      list: {
+        //this is the create new list name
         listId: "",
         listName: "",
       },
       userReadingLists: [], //this is the group of user's reading lists
 
-      bookListIdFilter: ''
+      bookListIdFilter: "",
     };
   },
   components: {
@@ -68,7 +69,7 @@ export default {
   methods: {
     getBooks() {},
 
-    updateFilter(listId){
+    updateFilter(listId) {
       this.bookListIdFilter = listId;
     },
 
@@ -89,11 +90,13 @@ export default {
     // }
   },
   computed: {
-    filteredBooks(){
-      return this.books.filter( book => {
-        return this.bookListIdFilter == '' ? true: this.bookListIdFilter == book.readingListId;
+    filteredBooks() {
+      return this.books.filter((book) => {
+        return this.bookListIdFilter == ""
+          ? true
+          : this.bookListIdFilter == book.readingListId;
       });
-    }
+    },
   },
   created() {
     BookService.getMyBooks().then((response) => {
@@ -192,5 +195,50 @@ h2 h1 {
 
 .list-buttons {
   margin-top: 0.5vh;
+}
+
+/* .m-1, .m-1:hover {
+  margin-bottom: 2vh;
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+} */
+
+.form-control {
+  margin-bottom: 1vh;
+  margin-top: 2vh;
+}
+
+/* .btn-danger, .btn-danger:hover {
+ 
+  color: rgba(255, 255, 255, 0.884);
+  border-color: rgb(255, 94, 0);
+  background-color: rgb(255, 94, 0);
+  
+} */
+
+.submit-button {
+  
+  background-color:#f73e06; 
+  
+  /* #e75123;  */
+  border: none;
+  color: white;
+  padding: 1vh 1vw;
+  text-align: center;
+  font-size: 17px;
+  opacity: 0.7;
+  transition: 0.1s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 0.3vh;
+  margin-bottom: 2vh;
+}
+
+.submit-button:hover {
+  opacity: 1;
+  background-color:#f73e06; 
 }
 </style>

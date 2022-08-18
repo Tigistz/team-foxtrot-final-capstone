@@ -39,7 +39,21 @@ JOIN reading_list ON reading_list.list_id = master_table.list_id
 WHERE users.user_id = 3 AND reading_list.list_name = 'Dummy Starting List'
 
 
+SELECT * FROM reading_list
+WHERE list_name ILIKE 'rob1'
+
+
 
 SELECT * 
 FROM master_table
 WHERE book_id = 3 AND user_id = 3 AND list_id = 1;
+
+-- UPDATE master_table
+-- SET list_id = 2
+-- WHERE book_id = 3 AND user_id = 3
+
+SELECT * FROM reading_list;
+UPDATE reading_list SET list_name = 'deletedList' WHERE list_id = 15;
+
+
+
