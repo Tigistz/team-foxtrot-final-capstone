@@ -284,19 +284,6 @@ h5 {
   border-color: rgba(255, 255, 255, 0.884);
 }
 
-.dropdown-toggle .btn-secondary{
-  background-color: rgba(0, 0, 0, 0.5);
-
-.dropdown-menu {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.bg-transparent{}
-
-
-  
-
-}
 
 
 

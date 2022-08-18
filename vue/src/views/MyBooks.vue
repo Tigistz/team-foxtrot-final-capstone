@@ -25,21 +25,29 @@
     <book-list :books="filteredBooks" :userReadingLists="userReadingLists" />
 
     <div>
-      <form class="list-form" v-on:submit.prevent="createList()">
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="List Name... (required)"
-            required="true;"
-            v-model="list.listName"
-          />
-        </div>
-        <button class="submit-button" v-on:click.prevent="createList()">
+      
+        
+        <div class="toggle-button">
+          <b-button v-b-toggle.collapse-3 class="m-1">Create a List</b-button>
+          <b-collapse visible id="collapse-3">
+            <form class="list-form" v-on:submit.prevent="createList()">
+            <div class="form-group">
+             <input
+               type="text"
+               class="form-control"
+               id="exampleFormControlInput1"
+               placeholder="List Name... (required)"
+               required="true;"
+               v-model="list.listName"
+             />
+             <button class="submit-button" v-on:click.prevent="createList()">
           Create List
         </button>
-      </form>
+            </div>
+            </form>
+          </b-collapse>
+        </div>
+      
     </div>
   </div>
 </template>
@@ -193,4 +201,14 @@ h2 h1 {
 .list-buttons {
   margin-top: 0.5vh;
 }
+
+.m-1 {
+  margin-bottom: 2vh;
+}
+
+.form-control {
+  margin-bottom: 3vh;
+  margin-top: 1vh;
+}
+
 </style>
