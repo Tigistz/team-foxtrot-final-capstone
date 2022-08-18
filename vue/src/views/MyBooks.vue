@@ -22,16 +22,9 @@
     <!-- filtered -->
     <book-list :books="filteredBooks" :userReadingLists="userReadingLists" />
 
-<<<<<<< HEAD
-    <div>
-      <div class="toggle-button">
-        <b-button v-b-toggle.collapse-3 class="m-1">Create a List</b-button>
-        <b-collapse visible id="collapse-3">
-=======
      <div>
     
       
->>>>>>> c4fd3781e3e2525c2ea58805f397a45c1d6bd841
           <form class="list-form" v-on:submit.prevent="createList()">
             <div class="form-group">
               <input
@@ -47,19 +40,8 @@
               </button>
             </div>
           </form>
-<<<<<<< HEAD
-        </b-collapse>
       </div>
     </div>
-
-
-
-    
-  </div>
-=======
-      </div>
-    </div>
->>>>>>> c4fd3781e3e2525c2ea58805f397a45c1d6bd841
 </template>
 
 <script>
